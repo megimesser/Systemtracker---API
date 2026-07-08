@@ -9,7 +9,7 @@ import json
 #Systemkette soll nach Implementierung hier integriert werden 
 # Level der Befehlsausführung könnten eventuell durch unterschiedliche Level angegeben werden
 
-befehlskette = ["df -h","free -h"]
+befehlskette = ["df -h","free -h","uptime"]
 console = Console()
 
 def systemabruf(befehlskette):
@@ -67,6 +67,24 @@ def systemabruf(befehlskette):
 
                 with open("ram.json", "w") as f:
                     json.dump(entries, f, indent=4)
+
+            if befehl == ['uptime']:
+
+                entries = []
+
+                for line in lines[1:]:
+                    parts = line.split()
+
+                    entries.append({
+                        "uptime": parts[0],
+
+
+                    })
+
+                with open("uptime.json", "w") as f:
+                    json.dump(entries, f, indent=4)
+
+            
             
             print(result.stdout)
 
