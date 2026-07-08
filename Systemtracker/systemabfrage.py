@@ -61,7 +61,7 @@ def systemabruf(befehlskette):
                         "total": parts[1],
                         "used": parts[2],
                         "free": parts[3],
-                        "shared": parts[4],
+                        #"shared": parts[4],
                         "available": parts[-1],
                     })
 
