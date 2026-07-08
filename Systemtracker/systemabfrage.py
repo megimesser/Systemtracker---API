@@ -93,7 +93,7 @@ def systemabruf(befehlskette):
                 entries = []
 
                 for line in lines:
-                    parts = line.split
+                    parts = line.split()
                     
                     entries.append({
                         "Container Image": parts[0]
