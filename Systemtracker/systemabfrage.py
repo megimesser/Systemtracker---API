@@ -8,8 +8,7 @@ import json
 
 #Systemkette soll nach Implementierung hier integriert werden 
 # Level der Befehlsausführung könnten eventuell durch unterschiedliche Level angegeben werden
-
-befehlskette = ["df -h","free -h","uptime"]
+befehlskette = ["df -h","free -h","uptime","docker ps"]
 console = Console()
 
 def systemabruf(befehlskette):
@@ -68,26 +67,49 @@ def systemabruf(befehlskette):
                 with open("ram.json", "w") as f:
                     json.dump(entries, f, indent=4)
 
+
             if befehl == ['uptime']:
+                print(lines)
 
                 entries = []
 
-                for line in lines[1:]:
-                    parts = line.split()
+                
+                for line in lines:
+                    parts = line.split(',')
+
+
+                    print(parts[1])
 
                     entries.append({
-                        "uptime": parts[0],
-                        "minutes": parts[1]
-
-
+                        "uptime": parts[0] + parts[1],
+                        "users": parts[2],
+                        "load_averages": parts[3]
                     })
 
                 with open("uptime.json", "w") as f:
                     json.dump(entries, f, indent=4)
 
+            if befehl == ["docker ps"]:
+                entries = []
+
+                for line in lines:
+                    parts = line.split[1:]
+                    
+                    entries.append({
+                        "Container Image": parts[0]
+                    })
+
+                with open("docker.json","w") as f:
+                    json.dump(entries,f,indent=4)
+
+
+
+
+
+
             
             
-            print(result.stdout)
+            #print(result.stdout)
 
             """
 
