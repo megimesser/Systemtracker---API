@@ -47,6 +47,26 @@ def systemabruf(befehlskette):
 
                 with open("disk.json", "w") as f:
                     json.dump(entries, f, indent=4)
+
+
+            if befehl == ["free -h"]:
+
+                entries = []
+
+                for line in lines[1:]:
+                    parts = line.split()
+
+                    entries.append({
+                        "marker": parts[0],
+                        "total": parts[1],
+                        "used": parts[2],
+                        "free": parts[3],
+                        "shared": parts[4],
+                        "available": parts[-1],
+                    })
+
+                with open("ram.json", "w") as f:
+                    json.dump(entries, f, indent=4)
             
             print(result.stdout)
 
