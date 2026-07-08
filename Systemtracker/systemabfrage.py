@@ -77,6 +77,7 @@ def systemabruf(befehlskette):
 
                     entries.append({
                         "uptime": parts[0],
+                        "minutes": parts[1]
 
 
                     })
