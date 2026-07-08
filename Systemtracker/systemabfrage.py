@@ -47,6 +47,8 @@ def systemabruf(befehlskette):
 
                 with open("disk.json", "w") as f:
                     json.dump(entries, f, indent=4)
+            
+            print(result.stdout)
 
             """
 
