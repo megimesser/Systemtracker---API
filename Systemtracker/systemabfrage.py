@@ -49,7 +49,7 @@ def systemabruf(befehlskette):
                     json.dump(entries, f, indent=4)
 
 
-            if befehl == ["free -h"]:
+            if befehl == ['free', '-h']:
 
                 entries = []
 
