@@ -3,7 +3,7 @@
         "filesystem": "/dev/disk2s1s1",
         "size": "460Gi",
         "used": "12Gi",
-        "available": "92Gi",
+        "available": "93Gi",
         "capacity": "12%",
         "mounted_on": "/"
     },
@@ -18,16 +18,16 @@
     {
         "filesystem": "/dev/disk2s6",
         "size": "460Gi",
-        "used": "9.0Gi",
-        "available": "92Gi",
-        "capacity": "9%",
+        "used": "8.0Gi",
+        "available": "93Gi",
+        "capacity": "8%",
         "mounted_on": "/System/Volumes/VM"
     },
     {
         "filesystem": "/dev/disk2s2",
         "size": "460Gi",
         "used": "8.4Gi",
-        "available": "92Gi",
+        "available": "93Gi",
         "capacity": "9%",
         "mounted_on": "/System/Volumes/Preboot"
     },
@@ -35,7 +35,7 @@
         "filesystem": "/dev/disk2s4",
         "size": "460Gi",
         "used": "3.5Mi",
-        "available": "92Gi",
+        "available": "93Gi",
         "capacity": "1%",
         "mounted_on": "/System/Volumes/Update"
     },
@@ -67,7 +67,7 @@
         "filesystem": "/dev/disk2s5",
         "size": "460Gi",
         "used": "337Gi",
-        "available": "92Gi",
+        "available": "93Gi",
         "capacity": "79%",
         "mounted_on": "/System/Volumes/Data"
     },
