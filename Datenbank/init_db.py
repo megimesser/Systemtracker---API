@@ -1,4 +1,4 @@
-from db import engine, Base
+from db import engine, Base, DATABASE_URL
 import models  # noqa: F401 – Import nötig, damit die Modelle registriert werden
 
 
@@ -8,4 +8,5 @@ def init_db():
 
 
 if __name__ == "__main__":
-    init_db()
+    print(DATABASE_URL)
+    #init_db()

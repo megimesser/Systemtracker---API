@@ -1,14 +1,41 @@
-from sqlalchemy import String, DateTime
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from datetime import datetime
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+
+#Verbindung der Datenbank zum SQL - Container
+DATABASE_URL = (
+    "postgresql+psycopg://max:geheim@localhost:5432/testdb"
+)
+
+# Erstellung einer Engine 
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    echo=False
+    )
+
+# Verbindung testen 
+with engine.connect() as connection:
+    print("Verbindung erfolgreich!")
+
+# Session erzeugen 
+SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
+
 
 class Base(DeclarativeBase):
+    """Basisklasse für alle ORM-Modelle."""
     pass
 
-class CheckResult(Base):
-    __tablename__ = "check_results"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String)
-    status: Mapped[str] = mapped_column(String)
-    timestamp: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+@contextmanager
+def get_session():
+    """Session mit garantiertem Aufräumen – wie 'with open()' für Dateien."""
+    session = SessionLocal()
+    try:
+        yield session
+        session.commit()
+    except Exception:
+        session.rollback()
+        raise
+    finally:
+        session.close()
