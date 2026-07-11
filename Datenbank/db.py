@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, contextmanager
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 
 #Verbindung der Datenbank zum SQL - Container
