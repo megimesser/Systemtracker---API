@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from sqlalchemy import String, Float, Integer, DateTime, Text, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from database import Base 
+from db import Base 
 
 
 class Position(Base):
