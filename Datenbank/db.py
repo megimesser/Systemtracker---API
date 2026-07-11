@@ -1,4 +1,5 @@
-from sqlalchemy import create_engine, contextmanager
+from sqlalchemy import create_engine
+from contextmanager import contextmanager
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 
