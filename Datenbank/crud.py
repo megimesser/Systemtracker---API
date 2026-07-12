@@ -1,4 +1,4 @@
-from sqlalchemy import select 
+#from sqlalchemy import select 
 from db import get_session
 from models import Datentraeger
 
