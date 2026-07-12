@@ -13,7 +13,7 @@ class Datentraeger(Base):
     used: Mapped[str] = mapped_column(String(50), index = True)
     available: Mapped[str] = mapped_column(String(50), index = True)
     capacity: Mapped[str] = mapped_column(String(50), index = True)
-    mounted_on: Mapped[str] = mapped_column(String(50), index = True)
+    mounted_on: Mapped[str] = mapped_column(String(300), index = True)
     erfasst_am: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),
