@@ -1,6 +1,14 @@
 #from sqlalchemy import select 
 from db import get_session
 from models import Datentraeger
+import json
+
+
+def opener(data):
+    with open (data,"r") as f:
+        return json.load(f)
+
+
 
 
 
@@ -21,4 +29,4 @@ def speichere_positionen(daten: list[dict]) -> str:
         return len(objekte)
 
 if __name__ == "__main__":
-    speichere_positionen("disk.json")
+    speichere_positionen(opener("disk.json"))
