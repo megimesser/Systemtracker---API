@@ -1,6 +1,6 @@
 #from sqlalchemy import select 
-from db import get_session
-from models import Datentraeger
+from Datenbank.db import get_session
+from Datenbank.models import Datentraeger
 import json
 from config import DISK
 
