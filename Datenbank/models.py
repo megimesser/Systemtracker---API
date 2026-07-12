@@ -4,7 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from db import Base 
 
 
-class Position(Base):
+class Datentraeger(Base):
     __tablename__ = "discinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key=True)
