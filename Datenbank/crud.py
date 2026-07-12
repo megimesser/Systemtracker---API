@@ -2,6 +2,7 @@
 from db import get_session
 from models import Datentraeger
 import json
+from config import DISK
 
 
 def opener(data):
@@ -29,4 +30,4 @@ def speichere_positionen(daten: list[dict]) -> str:
         return len(objekte)
 
 if __name__ == "__main__":
-    speichere_positionen(opener("disk.json"))
+    speichere_positionen(opener(DISK))
