@@ -4,7 +4,7 @@ from models import Datentraeger
 
 
 
-def speichere_positionen(daten: list[dict]) -> int:
+def speichere_positionen(daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Datentraeger(
