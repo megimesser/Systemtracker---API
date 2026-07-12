@@ -8,11 +8,11 @@ class Datentraeger(Base):
     __tablename__ = "discinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key=True)
-    filesystem: Mapped[str] = mapped_column(String(40), index = True)
-    size: Mapped[str] = mapped_column(String(50), index = True)
-    used: Mapped[str] = mapped_column(String(50), index = True)
-    available: Mapped[str] = mapped_column(String(50), index = True)
-    capacity: Mapped[str] = mapped_column(String(50), index = True)
+    filesystem: Mapped[str] = mapped_column(String(300), index = True)
+    size: Mapped[str] = mapped_column(String(300), index = True)
+    used: Mapped[str] = mapped_column(String(300), index = True)
+    available: Mapped[str] = mapped_column(String(300), index = True)
+    capacity: Mapped[str] = mapped_column(String(300), index = True)
     mounted_on: Mapped[str] = mapped_column(String(300), index = True)
     erfasst_am: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
