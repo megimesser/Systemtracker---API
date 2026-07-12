@@ -8,5 +8,5 @@ def init_db():
 
 
 if __name__ == "__main__":
-    print(DATABASE_URL)
-    #init_db()
+    #print(DATABASE_URL)
+    init_db()
