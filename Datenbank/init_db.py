@@ -1,5 +1,5 @@
-from db import engine, Base, DATABASE_URL
-import models  # noqa: F401 – Import nötig, damit die Modelle registriert werden
+from Datenbank.db import engine, Base, DATABASE_URL
+import Datenbank.models  # noqa: F401 – Import nötig, damit die Modelle registriert werden
 
 
 def init_db():

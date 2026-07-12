@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from sqlalchemy import String, Float, Integer, DateTime, Text, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from db import Base 
+from Datenbank.db import Base 
 
 
 class Datentraeger(Base):
