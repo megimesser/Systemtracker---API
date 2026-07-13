@@ -93,8 +93,8 @@ def systemabruf_pipe(befehlskette_pipe):
             match = re.search("\|", befehl)
 
             if match:
-                davor = teststring_2[:match.start()]
-                danach = teststring_2[match.end():]
+                davor = befehl[:match.start()]
+                danach = befehl[match.end():]
                 print(davor)
                 print(danach)
 
