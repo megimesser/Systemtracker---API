@@ -102,7 +102,7 @@ def systemabruf_pipe(befehlskette_pipe):
                 befehl_1 = befehl = shlex.split(davor)
 
                 ps = subprocess.Popen(
-                    ps,
+                    befehl_1,
                     stdout=subprocess.PIPE,
                     text=True
                 )
