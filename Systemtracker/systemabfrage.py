@@ -122,4 +122,4 @@ def systemabruf_pipe(befehlskette_pipe):
 
 if __name__ == "__main__":
     #print(systemabruf(befehlskette))
-    print(systemabruf(befehlskette_pipe))
+    print(systemabruf_pipe(befehlskette_pipe))
