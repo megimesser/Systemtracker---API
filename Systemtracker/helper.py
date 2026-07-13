@@ -88,9 +88,9 @@ def temp(lines,path):
     for line in lines:
         parts = line.split()
         temp = parts[5:]
-                    
+                     
         entries.append({
-            "temp": temp,
+            "temp": parts[0],
             })
 
         with open("temp.json","w") as f:
