@@ -90,7 +90,7 @@ def systemabruf(befehlskette):
 def systemabruf_pipe(befehlskette_pipe):
     for befehl in befehlskette_pipe:
         try:
-            match = re.search("\|", teststring_2)
+            match = re.search("\|", befehl)
 
             if match:
                 davor = teststring_2[:match.start()]
