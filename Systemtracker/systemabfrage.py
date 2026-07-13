@@ -21,7 +21,7 @@ print(DISK_DATA)
 # ps aux --sort=-%cpu | head -10
 
 befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
-befehlskette_2 = ["journalctl | tail -20"]
+befehlskette_pipe = ["journalctl | tail -20"]
 
 
 console = Console()
