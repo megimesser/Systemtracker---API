@@ -2,8 +2,9 @@ import subprocess
 import shlex
 from rich.console import Console
 from rich.panel import Panel
-from Systemtracker.helper import df,free, uptime, docker_ps, temp
+from Systemtracker.helper import df,free, uptime, docker_ps, temp, journal
 import json
+import re
 from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA
 
 print(DISK_DATA)
@@ -19,7 +20,8 @@ print(DISK_DATA)
 # Topram Prozesse -> ps aux --sort=-%mem | head -10 
 # ps aux --sort=-%cpu | head -10
 
-befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp","journalctl | tail -20"]
+befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
+befehlskette_2 = ["journalctl | tail -20"]
 
 
 console = Console()
@@ -56,8 +58,7 @@ def systemabruf(befehlskette):
             if befehl == ['vcgencmd', 'measure_temp']:
                 temp(lines,TEMP_DATA)
             
-            if befehl == ['journalctl' '|' 'tail' '-20']:
-                journal(lines,JOURNAL_DATA)
+            
 
 
 
@@ -81,11 +82,44 @@ def systemabruf(befehlskette):
             
 
         except subprocess.CalledProcessError as e:
-            print(f"Befehl fehlgeschlagen, returncode {e.returncode} : Befehl {befehl}")
+            print(f"Befehl fehlgeschlagen, returncode {e.returncode} : Befehl")
         except FileNotFoundError:
             print("Tool ist auf diesem System nicht installiert")
 
 
+def systemabruf_pipe(befehlskette_pipe):
+    for befehl in befehlskette_pipe:
+        try:
+            match = re.search("\|", teststring_2)
+
+            if match:
+                davor = teststring_2[:match.start()]
+                danach = teststring_2[match.end():]
+                print(davor)
+                print(danach)
+
+
+                befehl_1 = befehl = shlex.split(davor)
+
+                ps = subprocess.Popen(
+                    ps,
+                    stdout=subprocess.PIPE,
+                    text=True
+                )
+
+
+            
+                if befehl == ['journalctl' '|' 'tail' '-20']:
+                    journal(lines,JOURNAL_DATA)
+        
+        except subprocess.CalledProcessError as e:
+            print(f"Befehl fehlgeschlagen, returncode {e.returncode} : Befehl")
+
+
+
+        
+
 
 if __name__ == "__main__":
-    print(systemabruf(befehlskette))
+    #print(systemabruf(befehlskette))
+    print(systemabruf(befehlskette_pipe))
