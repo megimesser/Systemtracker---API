@@ -19,7 +19,7 @@ print(DISK_DATA)
 # Topram Prozesse -> ps aux --sort=-%mem | head -10 
 # ps aux --sort=-%cpu | head -10
 
-befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
+befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp","journalctl | tail -20"]
 
 
 console = Console()
@@ -55,6 +55,9 @@ def systemabruf(befehlskette):
 
             if befehl == ['vcgencmd', 'measure_temp']:
                 temp(lines,TEMP_DATA)
+            
+            if befehl == ['journalctl' '|' 'tail' '-20']:
+                journal(lines,JOURNAL_DATA)
 
 
 

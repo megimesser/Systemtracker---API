@@ -77,7 +77,7 @@ def docker_ps(lines,path):
             })
 
                 
-        with open("docker.json","w") as f:
+        with open(path,"w") as f:
             json.dump(entries,f,indent=4)
 
 
@@ -93,8 +93,22 @@ def temp(lines,path):
             "temp": parts[0],
             })
 
-        with open("temp.json","w") as f:
+        with open(path,"w") as f:
             json.dump(entries,f,indent=4)
+    
+
+def journal(lines,path):
+    entries = []
+
+    for line in lines:
+        #parts = line.split()
+        #temp = parts[5:]
+        entries.append(line)
+    
+
+        with open(path,"w") as f:
+            f.write(entries,f)
+
 
 
 
