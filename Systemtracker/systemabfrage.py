@@ -89,7 +89,7 @@ def systemabruf(befehlskette):
 
 def systemabruf_pipe(befehlskette_pipe):
     for befehl in befehlskette_pipe:
-        try:
+        #try:
             match = re.search("\|", befehl)
 
             if match:
@@ -112,8 +112,8 @@ def systemabruf_pipe(befehlskette_pipe):
                 if befehl == ['journalctl' '|' 'tail' '-20']:
                     journal(lines,JOURNAL_DATA)
         
-        except subprocess.CalledProcessError as e:
-            print(f"Befehl fehlgeschlagen, returncode {e.returncode} : Befehl")
+        #except subprocess.CalledProcessError as e:
+         #   print(f"Befehl fehlgeschlagen, returncode {e.returncode} : Befehl")
 
 
 
