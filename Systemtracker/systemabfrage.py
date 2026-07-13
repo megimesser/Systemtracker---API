@@ -2,7 +2,7 @@ import subprocess
 import shlex
 from rich.console import Console
 from rich.panel import Panel
-from Systemtracker.helper import df,free, uptime, docker_ps
+from Systemtracker.helper import df,free, uptime, docker_ps, temp
 import json
 from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA
 
