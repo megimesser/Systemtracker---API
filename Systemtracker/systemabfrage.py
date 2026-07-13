@@ -4,7 +4,7 @@ from rich.console import Console
 from rich.panel import Panel
 from Systemtracker.helper import df,free, uptime, docker_ps, temp
 import json
-from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA
+from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA
 
 print(DISK_DATA)
 
@@ -81,7 +81,7 @@ def systemabruf(befehlskette):
             
 
         except subprocess.CalledProcessError as e:
-            print(f"Befehl fehlgeschlagen, returncode {e.returncode}")
+            print(f"Befehl fehlgeschlagen, returncode {e.returncode} : Befehl {befehl}")
         except FileNotFoundError:
             print("Tool ist auf diesem System nicht installiert")
 
