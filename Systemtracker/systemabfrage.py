@@ -2,13 +2,24 @@ import subprocess
 import shlex
 from rich.console import Console
 from rich.panel import Panel
+from Systemtracker.helper import df,free, uptime, docker_ps
 import json
 
 
 
 #Systemkette soll nach Implementierung hier integriert werden 
 # Level der Befehlsausführung könnten eventuell durch unterschiedliche Level angegeben werden
-befehlskette = ["df -h","free -h","uptime","docker ps"]
+# Weitere Befehle:
+
+# Logs -> journalctl | tail -20
+# Temperatru -> vcgencmd measure_temp
+# Benutzer anzeigen -> who
+# Topram Prozesse -> ps aux --sort=-%mem | head -10 
+# ps aux --sort=-%cpu | head -10
+
+befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
+
+
 console = Console()
 
 def systemabruf(befehlskette):
@@ -28,81 +39,17 @@ def systemabruf(befehlskette):
             print(befehl)
 
             if befehl == ['df', '-h']:
-                header = lines[0].split()
-
-                entries = []
-
-                for line in lines[1:]:
-                    parts = line.split()
-
-                    entries.append({
-                        "filesystem": parts[0],
-                        "size": parts[1],
-                        "used": parts[2],
-                        "available": parts[3],
-                        "capacity": parts[4],
-                        "mounted_on": parts[-1],
-                    })
-
-                with open("disk.json", "w") as f:
-                    json.dump(entries, f, indent=4)
-
+                df(lines,"disk.json")
 
             if befehl == ['free', '-h']:
-
-                entries = []
-
-                for line in lines[1:]:
-                    parts = line.split()
-
-                    entries.append({
-                        "marker": parts[0],
-                        "total": parts[1],
-                        "used": parts[2],
-                        "free": parts[3],
-                        #"shared": parts[4],
-                        "available": parts[-1],
-                    })
-
-                with open("ram.json", "w") as f:
-                    json.dump(entries, f, indent=4)
-
-
+                free(lines,"ram.json")
+                            
             if befehl == ['uptime']:
-                print(lines)
-
-                entries = []
-
+                uptime(lines,"uptime.json")
                 
-                for line in lines:
-                    parts = line.split(',')
-
-
-                    print(parts[1])
-
-                    entries.append({
-                        "uptime": parts[0] + parts[1],
-                        "users": parts[2],
-                        "load_averages": parts[3]
-                    })
-
-                with open("uptime.json", "w") as f:
-                    json.dump(entries, f, indent=4)
 
             if befehl == ["docker ps"]:
-                entries = []
-
-                for line in lines:
-                    parts = line.split()
-                    
-                    entries.append({
-                        "Container Image": parts[0]
-                    })
-
-                with open("docker.json","w") as f:
-                    json.dump(entries,f,indent=4)
-
-
+                docker_ps(lines,"docker.json")
 
 
 
