@@ -7,49 +7,14 @@ BASE_DIR = Path(__file__).resolve().parent
 
 DISK = BASE_DIR / "Systemtracker" / "disk.json"
 
+DISK_DATA = BASE_DIR / "data" / "disk.json"
+RAM_DATA = BASE_DIR / "data" / "ram.json"
+UPTIME_DATA = BASE_DIR / "data" / "uptime.json"
+DOCKER_DATA = BASE_DIR / "data" / "docker.json"
+TEMP_DATA = BASE_DIR / "data" / "temp.json"
+
+
 
  
 #Befehlskette 
 # Diese Befehlskette sollen beim Aufruf des Systemtrackers alle durchgeführt werden 
-
-def df(lines,path):
-    header = lines[0].split()
-
-    entries = []
-
-    for line in lines[1:]:
-        parts = line.split()
-
-        entries.append({
-            "filesystem": parts[0],
-            "size": parts[1],
-            "used": parts[2],
-            "available": parts[3],
-            "capacity": parts[4],
-            "mounted_on": parts[-1],
-                    })
-
-    with open(path, "w") as f:
-        json.dump(entries, f, indent=4)
-
-
-def free(lines,path):
-    entries = []
-
-    for line in lines[1:]:
-        parts = line.split()
-
-        entries.append({
-            "marker": parts[0],
-            "total": parts[1],
-            "used": parts[2],
-            "free": parts[3],
-            #"shared": parts[4],
-            "available": parts[-1],
-                    })
-
-    with open("ram.json", "w") as f:
-        json.dump(entries, f, indent=4)
-
-
-

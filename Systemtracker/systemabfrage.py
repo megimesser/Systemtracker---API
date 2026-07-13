@@ -4,7 +4,9 @@ from rich.console import Console
 from rich.panel import Panel
 from Systemtracker.helper import df,free, uptime, docker_ps
 import json
+from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA
 
+print(DISK_DATA)
 
 
 #Systemkette soll nach Implementierung hier integriert werden 
@@ -39,17 +41,20 @@ def systemabruf(befehlskette):
             print(befehl)
 
             if befehl == ['df', '-h']:
-                df(lines,"disk.json")
+                df(lines,DISK_DATA)#"disk.json")
 
             if befehl == ['free', '-h']:
-                free(lines,"ram.json")
+                free(lines,RAM_DATA)
                             
             if befehl == ['uptime']:
-                uptime(lines,"uptime.json")
+                uptime(lines,UPTIME_DATA)
                 
 
-            if befehl == ["docker ps"]:
-                docker_ps(lines,"docker.json")
+            if befehl == ['docker', 'ps']:
+                docker_ps(lines,DOCKER_DATA)
+
+            if befehl == ['vcgencmd', 'measure_temp']:
+                temp(lines,TEMP_DATA)
 
 
 
