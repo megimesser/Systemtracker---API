@@ -120,7 +120,7 @@ def process_mem(lines,path):
         line = line.split()
         
         #parts = lines.split()
-        print(line)
+        #print(line)
         
 
         entries.append({
@@ -142,6 +142,7 @@ def process_cpu(lines,path):
         
         #parts = lines.split()
         print(line)
+        print("pipeline")
         
 
         entries.append({
