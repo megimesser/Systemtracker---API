@@ -99,16 +99,15 @@ def temp(lines,path):
 
 def journal(lines,path):
     print("match")
-    entries = []
+    entries = ""
 
     for line in lines:
         #parts = line.split()
         #temp = parts[5:]
-        entries.append(line)
+        entries += f"\nline\n"
     
 
     with open(path,"w") as f:
-        entries = str(entries)
         f.write(entries)
 
 
