@@ -104,7 +104,7 @@ def journal(lines,path):
     for line in lines:
         #parts = line.split()
         #temp = parts[5:]
-        entries += f"\nline\n"
+        entries += f"\n{line}\n"
     
 
     with open(path,"w") as f:
