@@ -117,6 +117,7 @@ def process(lines,path):
     entries = []
 
     for line in lines[1:]:
+        line = line.split()
         
         #parts = lines.split()
         print(line)
