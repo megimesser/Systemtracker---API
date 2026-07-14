@@ -107,6 +107,14 @@ def systemabruf_pipe(befehlskette_pipe):
                     text=True
                 )
 
+                ps_2 = subprocess.run(
+                    stdour = ps.stdout,
+                    capture_output = True,
+                    text = true
+                )
+
+                print(ps_2)
+
 
             
                 if befehl == ['journalctl' '|' 'tail' '-20']:
