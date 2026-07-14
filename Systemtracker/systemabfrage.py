@@ -2,7 +2,7 @@ import subprocess
 import shlex
 #from rich.console import Console
 #from rich.panel import Panel
-from Systemtracker.helper import df,free, uptime, docker_ps, temp, journal, process
+from Systemtracker.helper import df,free, uptime, docker_ps, temp, journal, process_mem, process_cpu
 import json
 import re
 from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA, MEM_DATA
@@ -20,7 +20,7 @@ print(DISK_DATA)
 # ps aux --sort=-%cpu | head -10
 
 befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
-befehlskette_pipe = ["journalctl | tail -20", "ps aux --sort=-%mem | head -10" ]
+befehlskette_pipe = ["journalctl | tail -20", "ps aux --sort=-%mem | head -10","ps aux --sort=-%cpu | head -10"]
 
 
 #console = Console()
@@ -130,7 +130,10 @@ def systemabruf_pipe(befehlskette_pipe):
 
 
                 if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%mem',  'head', '-10']:
-                    process(lines,MEM_DATA)
+                    process_mem(lines,MEM_DATA)
+                
+                if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%cpu', 'head -10']:
+                    process_cpu(lines,CPU_DATA)
 
                     
         

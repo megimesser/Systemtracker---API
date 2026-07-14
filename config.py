@@ -14,6 +14,7 @@ DOCKER_DATA = BASE_DIR / "data" / "docker.json"
 TEMP_DATA = BASE_DIR / "data" / "temp.json"
 JOURNAL_DATA = BASE_DIR / "data" / "journal.json"
 MEM_DATA = BASE_DIR / "data" / "mem.json"
+CPU_DATA = BASE_DIR / "data" / "cpu.json"
 
 
 
