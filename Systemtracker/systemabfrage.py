@@ -119,10 +119,11 @@ def systemabruf_pipe(befehlskette_pipe):
                 ps.wait()
 
                 print(ps_2.stdout)
+                print(befehl_1 + befehl_2)
 
 
             
-                if befehl == ['journalctl' '|' 'tail' '-20']:
+                if befehl_1  == ['journalctl'  'tail' '-20']:
                     #journal(lines,JOURNAL_DATA)
                     print("gefunden")
         
