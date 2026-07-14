@@ -1,7 +1,7 @@
 import subprocess 
 import shlex
-from rich.console import Console
-from rich.panel import Panel
+#from rich.console import Console
+#from rich.panel import Panel
 from Systemtracker.helper import df,free, uptime, docker_ps, temp, journal
 import json
 import re
@@ -24,7 +24,7 @@ befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
 befehlskette_pipe = ["journalctl | tail -20"]
 
 
-console = Console()
+#console = Console()
 
 def systemabruf(befehlskette):
     for befehl in befehlskette:
