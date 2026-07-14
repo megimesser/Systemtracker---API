@@ -98,17 +98,16 @@ def temp(lines,path):
     
 
 def journal(lines,path):
-    print("match")
-    entries = ""
+    entries = []
 
     for line in lines:
         #parts = line.split()
         #temp = parts[5:]
-        entries += f"\n{line}\n"
+        entries.append(line)
     
 
     with open(path,"w") as f:
-        f.write(entries)
+            json.dump(entries,f,indent=4)
 
 
 
