@@ -103,6 +103,7 @@ def journal(lines,path):
     for line in lines:
         #parts = line.split()
         #temp = parts[5:]
+        print(line)
         entries.append(line)
     
 
