@@ -110,7 +110,7 @@ def systemabruf_pipe(befehlskette_pipe):
                 ps_2 = subprocess.run(
                     stdour = ps.stdout,
                     capture_output = True,
-                    text = true
+                    text = True
                 )
 
                 print(ps_2)
