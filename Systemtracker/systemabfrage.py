@@ -121,10 +121,12 @@ def systemabruf_pipe(befehlskette_pipe):
                 #print(ps_2.stdout)
                 print(befehl_1 + befehl_2)
 
+                lines = ps_2.stdout.splitlines()
+
 
             
                 if befehl_1 + befehl_2 == ['journalctl', 'tail', '-20']:
-                    journal(ps_2.stdout,JOURNAL_DATA)
+                    journal(lines,JOURNAL_DATA)
                     
         
         #except subprocess.CalledProcessError as e:
