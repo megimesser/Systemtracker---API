@@ -100,6 +100,7 @@ def systemabruf_pipe(befehlskette_pipe):
 
 
                 befehl_1 = befehl = shlex.split(davor)
+                befehl_2 = befehl = shlex.split(danach)
 
                 ps = subprocess.Popen(
                     befehl_1,
