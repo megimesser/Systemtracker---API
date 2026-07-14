@@ -132,7 +132,7 @@ def systemabruf_pipe(befehlskette_pipe):
                 if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%mem',  'head', '-10']:
                     process_mem(lines,MEM_DATA)
                 
-                if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%cpu', 'head -10']:
+                if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%cpu', 'head', '-10']:
                     process_cpu(lines,CPU_DATA)
 
                     
