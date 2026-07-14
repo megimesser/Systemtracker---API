@@ -116,7 +116,7 @@ def journal(lines,path):
 def process(lines,path):
     entries = []
 
-    for line in lines:
+    for line in lines[1:]:
         
         #parts = lines.split()
         print(line)
