@@ -5,14 +5,14 @@ import shlex
 from Systemtracker.helper import df,free, uptime, docker_ps, temp, journal, process_mem, process_cpu
 import json
 import re
-from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA, MEM_DATA
+from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA, MEM_DATA, CPU_DATA
 
 print(DISK_DATA)
 
 
 #Systemkette soll nach Implementierung hier integriert werden 
 # Level der Befehlsausführung könnten eventuell durch unterschiedliche Level angegeben werden
-# Weitere Befehle:
+# Weitere Befehle: 
 
 
 # Benutzer anzeigen -> who

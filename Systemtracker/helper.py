@@ -113,7 +113,7 @@ def journal(lines,path):
 
 
 
-def process(lines,path):
+def process_mem(lines,path):
     entries = []
 
     for line in lines[1:]:
@@ -134,4 +134,22 @@ def process(lines,path):
 
 
 
+def process_cpu(lines,path):
+    entries = []
+
+    for line in lines[1:]:
+        line = line.split()
+        
+        #parts = lines.split()
+        print(line)
+        
+
+        entries.append({
+            "User" : line[0],
+            "PID" : line[1],
+            "%MCPU" : line[2]
+        })
+    
+    with open(path,"w") as f:
+            json.dump(entries,f,indent=4)
 
