@@ -93,8 +93,8 @@ def systemabruf_pipe(befehlskette_pipe):
             match = re.search("\|", befehl)
 
             if match:
-                davor = befehl[:match.start()]
-                danach = befehl[match.end():]
+                davor = befehl[:match.start()].strip()
+                danach = befehl[match.end():].strip()
                 print(davor)
                 print(danach)
 
@@ -108,10 +108,14 @@ def systemabruf_pipe(befehlskette_pipe):
                 )
 
                 ps_2 = subprocess.run(
+                    befehl_2,
                     stdin = ps.stdout,
                     capture_output = True,
                     text = True
                 )
+
+                ps.stdout.close()
+                ps.wait()
 
                 print(ps_2.stdout)
 
