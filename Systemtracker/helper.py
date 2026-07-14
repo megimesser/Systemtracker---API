@@ -121,9 +121,9 @@ def process(lines,path):
         
 
         entries.append({
-            "User" : parts[0],
-            "PID" : parts[1],
-            "%MEM" : parts[4]
+            "User" : line[0],
+            "PID" : line[1],
+            "%MEM" : line[4]
         })
     
     with open(path,"w") as f:
