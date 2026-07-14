@@ -123,7 +123,7 @@ def systemabruf_pipe(befehlskette_pipe):
 
 
             
-                if befehl_1  == ['journalctl'  'tail' '-20']:
+                if befehl_1 + befehl_2 == ['journalctl', 'tail', '-20']:
                     #journal(lines,JOURNAL_DATA)
                     print("gefunden")
         
