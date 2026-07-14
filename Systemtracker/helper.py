@@ -108,6 +108,7 @@ def journal(lines,path):
     
 
     with open(path,"w") as f:
+        entries = str(entries)
         f.write(entries)
 
 
