@@ -117,12 +117,13 @@ def process(lines,path):
     entries = []
 
     for line in lines:
-        #parts = lines.split()
+        parts = lines.split()
+        print(line)
 
         entries.append({
-            "User" : line[0],
-            "PID" : line[1],
-            "%MEM" : line[4]
+            "User" : parts[0],
+            "PID" : parts[1],
+            "%MEM" : parts[4]
         })
     
     with open(path,"w") as f:
