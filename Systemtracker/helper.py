@@ -103,7 +103,7 @@ def journal(lines,path):
     for line in lines:
         #parts = line.split()
         #temp = parts[5:]
-        print(line)
+        #print(line)
         entries.append(line)
     
 
@@ -119,7 +119,7 @@ def process(lines,path):
     for line in lines:
         
         #parts = lines.split()
-        print(line[2])
+        print(line)
         
 
         entries.append({
