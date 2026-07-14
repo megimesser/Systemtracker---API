@@ -126,7 +126,7 @@ def process(lines,path):
         entries.append({
             "User" : line[0],
             "PID" : line[1],
-            "%MEM" : line[4]
+            "%MEM" : line[3]
         })
     
     with open(path,"w") as f:
