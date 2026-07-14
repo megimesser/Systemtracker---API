@@ -118,10 +118,10 @@ def systemabruf_pipe(befehlskette_pipe):
                 ps.wait()
 
                 #print(ps_2.stdout)
-                print(befehl_1 + befehl_2)
+                #print(befehl_1 + befehl_2)
 
                 lines = ps_2.stdout.splitlines()
-                print(lines)
+                #print(lines)
 
 
             
