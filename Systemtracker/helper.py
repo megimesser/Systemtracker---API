@@ -113,3 +113,17 @@ def journal(lines,path):
 
 
 
+def process(lines,path):
+    entries = []
+
+    for line in lines:
+        parts = lines.split()
+
+        entries.append({
+            "User" : parts[0],
+            "PID" : parts[1],
+            "%MEM" : parts[4]
+        })
+
+        
+

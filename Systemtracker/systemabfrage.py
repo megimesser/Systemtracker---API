@@ -5,7 +5,7 @@ import shlex
 from Systemtracker.helper import df,free, uptime, docker_ps, temp, journal
 import json
 import re
-from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA
+from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA, MEM_DATA
 
 print(DISK_DATA)
 
@@ -14,14 +14,13 @@ print(DISK_DATA)
 # Level der Befehlsausführung könnten eventuell durch unterschiedliche Level angegeben werden
 # Weitere Befehle:
 
-# Logs -> journalctl | tail -20
-# Temperatru -> vcgencmd measure_temp
+
 # Benutzer anzeigen -> who
 # Topram Prozesse -> ps aux --sort=-%mem | head -10 
 # ps aux --sort=-%cpu | head -10
 
 befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
-befehlskette_pipe = ["journalctl | tail -20"]
+befehlskette_pipe = ["journalctl | tail -20", "ps aux --sort=-%mem | head -10" ]
 
 
 #console = Console()
@@ -127,6 +126,11 @@ def systemabruf_pipe(befehlskette_pipe):
             
                 if befehl_1 + befehl_2 == ['journalctl', 'tail', '-20']:
                     journal(lines,JOURNAL_DATA)
+
+
+                if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%mem',  'head', '-10']:
+                    process(lines,MEM_DATA)
+
                     
         
         #except subprocess.CalledProcessError as e:
