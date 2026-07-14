@@ -121,6 +121,7 @@ def systemabruf_pipe(befehlskette_pipe):
                 print(befehl_1 + befehl_2)
 
                 lines = ps_2.stdout.splitlines()
+                print(lines)
 
 
             

@@ -118,7 +118,7 @@ def process(lines,path):
 
     for line in lines:
         parts = lines.split()
-        print(parts)
+        
 
         entries.append({
             "User" : parts[0],
