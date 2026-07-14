@@ -113,7 +113,7 @@ def systemabruf_pipe(befehlskette_pipe):
                     text = True
                 )
 
-                print(ps_2)
+                print(ps_2.stdout)
 
 
             
