@@ -107,8 +107,8 @@ def journal(lines,path):
         entries.append(line)
     
 
-        with open(path,"w") as f:
-            f.write(entries,f)
+    with open(path,"w") as f:
+        f.write(entries,f)
 
 
 
