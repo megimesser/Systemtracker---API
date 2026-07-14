@@ -118,7 +118,7 @@ def systemabruf_pipe(befehlskette_pipe):
                 ps.stdout.close()
                 ps.wait()
 
-                print(ps_2.stdout)
+                #print(ps_2.stdout)
                 print(befehl_1 + befehl_2)
 
 

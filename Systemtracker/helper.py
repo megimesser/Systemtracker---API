@@ -98,6 +98,7 @@ def temp(lines,path):
     
 
 def journal(lines,path):
+    print("match")
     entries = []
 
     for line in lines:
