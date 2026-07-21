@@ -2,7 +2,7 @@
 from Datenbank.db import get_session
 from Datenbank.models import Datentraeger, Ram,Sysinfo,Docker,Temp,Proc,Cpu
 import json
-from config import DISK
+from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA,MEM_DATA,CPU_DATA
 
 
 def opener(data):
@@ -121,11 +121,11 @@ def speichere_positionen_cpu(daten: list[dict]) -> str:
 
 
 if __name__ == "__main__":
-    speichere_positionen(opener(DISK))
-    speichere_positionen_ram(opener(DISK))
-    speichere_positionen_sys(opener(DISK))
-    speichere_positionen_docker(opener(DISK))
-    speichere_positionen_temp(opener(DISK))
-    speichere_positionen_proc(opener(DISK))
-    speichere_positionen_cpu(opener(DISK))
+    speichere_positionen(opener(DISK_DATA))
+    speichere_positionen_ram(opener(RAM_DATA))
+    speichere_positionen_sys(opener(UPTIME_DATA))
+    speichere_positionen_docker(opener(DOCKER_DATA))
+    speichere_positionen_temp(opener(TEMP_DATA))
+    speichere_positionen_proc(opener(MEM_DATA))
+    speichere_positionen_cpu(opener(CPU_DATA))
     
