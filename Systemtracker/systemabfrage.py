@@ -51,7 +51,7 @@ def systemabruf(befehlskette):
                 uptime(lines,UPTIME_DATA)
                 
 
-            if befehl == ['docker', 'ps']:
+            if befehl == ['docker', 'ps', '--format', '{{json .}}']:
                 print("docker path läuft")
                 docker_ps(lines,DOCKER_DATA)
 
