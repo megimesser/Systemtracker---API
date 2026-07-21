@@ -104,7 +104,7 @@ def speichere_positionen_proc(daten: list[dict]) -> str:
 def speichere_positionen_cpu(daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
-            Proc(
+            Cpu(
                 user=eintrag["User"],  
                 pid=eintrag["PID"], 
                 cpu=eintrag["%CPU"], 
