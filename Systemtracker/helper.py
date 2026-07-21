@@ -69,8 +69,8 @@ def docker_ps(lines,path):
     entries = []
 
     for line in lines[1:]:
-        parts = line.split()
-        print(parts)
+        parts = line.split(",")
+        print(line)
                     
         entries.append({
             "container": parts[1],
