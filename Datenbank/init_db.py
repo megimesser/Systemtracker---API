@@ -3,7 +3,9 @@ import Datenbank.models  # noqa: F401 – Import nötig, damit die Modelle regis
 
 
 def init_db():
+    Base.metadata.drop_all(bind=engine)     # löscht ALLE Tabellen – Daten weg!
     Base.metadata.create_all(bind=engine)
+    print("Drop/Create wird ausgeführt")
     print("Tabellen erstellt.")
 
 
