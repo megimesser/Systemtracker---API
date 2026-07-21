@@ -77,8 +77,8 @@ def docker_ps(lines,path):
         #print(line)
         print(parts)
         
-
-        if parts == match:
+    for char in parts:
+        if char == match:
              print(f"{parts} match")
                     
         entries.append({
