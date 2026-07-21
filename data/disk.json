@@ -1,74 +1,74 @@
 [
     {
-        "filesystem": "/dev/disk3s1s1",
-        "size": "460Gi",
+        "filesystem": "/dev/disk3s3s1",
+        "size": "926Gi",
         "used": "12Gi",
-        "available": "96Gi",
-        "capacity": "11%",
+        "available": "561Gi",
+        "capacity": "3%",
         "mounted_on": "/"
     },
     {
         "filesystem": "devfs",
-        "size": "222Ki",
-        "used": "222Ki",
+        "size": "211Ki",
+        "used": "211Ki",
         "available": "0Bi",
         "capacity": "100%",
         "mounted_on": "/dev"
     },
     {
         "filesystem": "/dev/disk3s6",
-        "size": "460Gi",
-        "used": "3.0Gi",
-        "available": "96Gi",
-        "capacity": "4%",
+        "size": "926Gi",
+        "used": "20Ki",
+        "available": "561Gi",
+        "capacity": "1%",
         "mounted_on": "/System/Volumes/VM"
     },
     {
-        "filesystem": "/dev/disk3s2",
-        "size": "460Gi",
-        "used": "8.4Gi",
-        "available": "96Gi",
-        "capacity": "9%",
+        "filesystem": "/dev/disk3s4",
+        "size": "926Gi",
+        "used": "8.5Gi",
+        "available": "561Gi",
+        "capacity": "2%",
         "mounted_on": "/System/Volumes/Preboot"
     },
     {
-        "filesystem": "/dev/disk3s4",
-        "size": "460Gi",
-        "used": "2.2Mi",
-        "available": "96Gi",
+        "filesystem": "/dev/disk3s2",
+        "size": "926Gi",
+        "used": "41Mi",
+        "available": "561Gi",
         "capacity": "1%",
         "mounted_on": "/System/Volumes/Update"
     },
     {
-        "filesystem": "/dev/disk1s2",
+        "filesystem": "/dev/disk2s2",
         "size": "500Mi",
         "used": "6.0Mi",
-        "available": "483Mi",
+        "available": "480Mi",
         "capacity": "2%",
         "mounted_on": "/System/Volumes/xarts"
     },
     {
-        "filesystem": "/dev/disk1s1",
+        "filesystem": "/dev/disk2s1",
         "size": "500Mi",
         "used": "5.6Mi",
-        "available": "483Mi",
+        "available": "480Mi",
         "capacity": "2%",
         "mounted_on": "/System/Volumes/iSCPreboot"
     },
     {
-        "filesystem": "/dev/disk1s3",
+        "filesystem": "/dev/disk2s3",
         "size": "500Mi",
-        "used": "984Ki",
-        "available": "483Mi",
+        "used": "3.6Mi",
+        "available": "480Mi",
         "capacity": "1%",
         "mounted_on": "/System/Volumes/Hardware"
     },
     {
-        "filesystem": "/dev/disk3s5",
-        "size": "460Gi",
-        "used": "340Gi",
-        "available": "96Gi",
-        "capacity": "78%",
+        "filesystem": "/dev/disk3s1",
+        "size": "926Gi",
+        "used": "344Gi",
+        "available": "561Gi",
+        "capacity": "39%",
         "mounted_on": "/System/Volumes/Data"
     },
     {
@@ -80,20 +80,20 @@
         "mounted_on": "/System/Volumes/Data/home"
     },
     {
-        "filesystem": "/Users/maximilian/Desktop/Downloads/Visual",
-        "size": "Studio",
-        "used": "Code-2.app",
-        "available": "460Gi",
-        "capacity": "336Gi",
-        "mounted_on": "/private/var/folders/9h/3vh3j54s0g1dpqqfhwv4g6640000gn/T/AppTranslocation/3DB55B6A-0FB5-49FA-9B7D-1B34C2441F9B"
-    },
-    {
         "filesystem": "/Users/maximilian/Downloads/Visual",
         "size": "Studio",
         "used": "Code.app",
-        "available": "460Gi",
-        "capacity": "336Gi",
-        "mounted_on": "/private/var/folders/9h/3vh3j54s0g1dpqqfhwv4g6640000gn/T/AppTranslocation/D63E26ED-308C-491A-85C3-2732D906E5B0"
+        "available": "926Gi",
+        "capacity": "345Gi",
+        "mounted_on": "/private/var/folders/_f/tf9xyfhs0tzcx0zq5ht6h0400000gn/T/AppTranslocation/DE4F63FB-7CD4-488B-AA43-9209EB4AA8AD"
+    },
+    {
+        "filesystem": "/Users/maximilian/Desktop/Downloads/Visual",
+        "size": "Studio",
+        "used": "Code-2.app",
+        "available": "926Gi",
+        "capacity": "345Gi",
+        "mounted_on": "/private/var/folders/_f/tf9xyfhs0tzcx0zq5ht6h0400000gn/T/AppTranslocation/35597578-1819-4AC4-96F9-953AA1DF4FE5"
     },
     {
         "filesystem": "/dev/disk4s3",
@@ -102,21 +102,5 @@
         "available": "760Mi",
         "capacity": "49%",
         "mounted_on": "Chrome"
-    },
-    {
-        "filesystem": "/Volumes/Google",
-        "size": "Chrome/Google",
-        "used": "Chrome.app",
-        "available": "1.4Gi",
-        "capacity": "718Mi",
-        "mounted_on": "/private/var/folders/9h/3vh3j54s0g1dpqqfhwv4g6640000gn/T/AppTranslocation/72F0FAD1-2998-4144-9F63-8498A851EFB5"
-    },
-    {
-        "filesystem": "/dev/disk5s3",
-        "size": "510Mi",
-        "used": "501Mi",
-        "available": "9.2Mi",
-        "capacity": "99%",
-        "mounted_on": "/Volumes/Firefox"
     }
 ]

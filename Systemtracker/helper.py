@@ -67,32 +67,24 @@ def uptime(lines,path):
 
     
 def docker_ps(lines,path):
-    muster = [1-9]
     entries = []
-    
-    for line in lines[1:]:
-        parts = line.split()
-        #parts = line.strip()
-        #print(line)
-        print(parts)
-        
-
-        for part in parts:
-            match = re.search(muster,part)
-
-            if match:
-                print(f"{parts} match")
-                    
+    for line in lines:
+        if not line.strip():
+            continue
+        try:
+            data = json.loads(line)
+        except json.JSONDecodeError:
+            continue
         entries.append({
-            "container": parts[1],
-            "runtime": parts[3],
-            "status": parts[4]
+                "container": data["Names"],
+                "runtime": data["RunningFor"],
+                "status": data["Status"],
             })
 
     #print(entries)
 
     with open(path,"w") as f:
-            json.dump(entries,f,indent=4)
+            json.dump(entries, f, indent=4)
 
 
 
