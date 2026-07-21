@@ -1,4 +1,5 @@
 import json
+import re
 
 
 
@@ -66,13 +67,18 @@ def uptime(lines,path):
 
     
 def docker_ps(lines,path):
+    muster = [1-9]
     entries = []
+    match = re.search(line,muster)
 
     for line in lines[1:]:
         parts = line.split()
         #parts = line.strip()
         #print(line)
         print(parts)
+        
+
+        if parts 
                     
         entries.append({
             "container": parts[1],
