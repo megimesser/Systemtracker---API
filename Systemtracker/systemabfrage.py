@@ -52,6 +52,7 @@ def systemabruf(befehlskette):
                 
 
             if befehl == ['docker', 'ps']:
+                print("docker path läuft")
                 docker_ps(lines,DOCKER_DATA)
 
             if befehl == ['vcgencmd', 'measure_temp']:

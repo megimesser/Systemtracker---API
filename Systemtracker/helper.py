@@ -53,7 +53,7 @@ def uptime(lines,path):
         parts = line.split(',')
 
 
-        print(parts[1])
+        #print(parts[1])
 
         entries.append({
             "uptime": parts[0] + parts[1],
