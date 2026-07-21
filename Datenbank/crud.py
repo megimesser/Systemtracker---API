@@ -34,8 +34,8 @@ def speichere_positionen_ram(daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Ram(
-                total=eintrag["marker"],
-                size=eintrag["total"],
+                marker=eintrag["marker"],
+                total=eintrag["total"],
                 used=eintrag["used"],
                 available=eintrag["available"],
                 free=eintrag["free"],
