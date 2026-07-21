@@ -95,8 +95,8 @@ def systemabruf_pipe(befehlskette_pipe):
             if match:
                 davor = befehl[:match.start()].strip()
                 danach = befehl[match.end():].strip()
-                print(davor)
-                print(danach)
+                #print(davor)
+                #print(danach)
 
 
                 befehl_1 = befehl = shlex.split(davor)
@@ -147,5 +147,5 @@ def systemabruf_pipe(befehlskette_pipe):
 
 
 if __name__ == "__main__":
-    #print(systemabruf(befehlskette))
+    print(systemabruf(befehlskette))
     print(systemabruf_pipe(befehlskette_pipe))
