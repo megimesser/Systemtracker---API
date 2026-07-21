@@ -69,7 +69,7 @@ def docker_ps(lines,path):
     entries = []
 
     for line in lines[1:]:
-        parts = line.split(",")
+        parts = line.split()
         print(line)
         print(parts)
                     
