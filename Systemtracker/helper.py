@@ -71,7 +71,7 @@ def docker_ps(lines,path):
     for line in lines[1:]:
         parts = line.split()
         #parts = line.strip()
-        print(line)
+        #print(line)
         print(parts)
                     
         entries.append({
@@ -146,8 +146,8 @@ def process_cpu(lines,path):
         line = line.split()
         
         #parts = lines.split()
-        print(line)
-        print("pipeline")
+        #print(line)
+        #print("pipeline")
         
 
         entries.append({
