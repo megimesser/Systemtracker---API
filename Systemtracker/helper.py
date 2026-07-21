@@ -69,16 +69,18 @@ def uptime(lines,path):
 def docker_ps(lines,path):
     muster = [1-9]
     entries = []
-    match = re.search(parts,muster)
-
+    
     for line in lines[1:]:
         parts = line.split()
         #parts = line.strip()
         #print(line)
         print(parts)
         
-        for char in parts:
-            if char == match:
+
+        for part in parts:
+            match = re.search(muster,part)
+
+            if match:
                 print(f"{parts} match")
                     
         entries.append({
