@@ -1,6 +1,6 @@
 #from sqlalchemy import select 
 from Datenbank.db import get_session
-from Datenbank.models import Datentraeger, Ram,Sysinfo,Docker,Temp,Journal,Proc,Cpu
+from Datenbank.models import Datentraeger, Ram,Sysinfo,Docker,Temp,Proc,Cpu
 import json
 from config import DISK
 
@@ -101,7 +101,7 @@ def speichere_positionen_proc(daten: list[dict]) -> str:
         return len(objekte)
 
 
-def speichere_positionen_Cpu(daten: list[dict]) -> str:
+def speichere_positionen_cpu(daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Proc(
@@ -124,4 +124,8 @@ if __name__ == "__main__":
     speichere_positionen(opener(DISK))
     speichere_positionen_ram(opener(DISK))
     speichere_positionen_sys(opener(DISK))
+    speichere_positionen_docker(opener(DISK))
+    speichere_positionen_temp(opener(DISK))
+    speichere_positionen_proc(opener(DISK))
+    speichere_positionen_cpu(opener(DISK))
     
