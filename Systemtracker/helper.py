@@ -72,13 +72,13 @@ def docker_ps(lines,path):
         parts = line.split(",")
         print(line)
                     
-        entries.append({
-            "container": parts[1],
-            "runtime": parts[3],
-            "status": parts[4]
-            })
+       # entries.append({
+        #    "container": parts[1],
+         #   "runtime": parts[3],
+          #  "status": parts[4]
+           # })
 
-    print(entries)
+    #print(entries)
 
     with open(path,"w") as f:
             json.dump(entries,f,indent=4)
