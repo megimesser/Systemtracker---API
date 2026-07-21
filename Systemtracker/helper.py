@@ -77,8 +77,9 @@ def docker_ps(lines,path):
             "status": parts[4]
             })
 
-                
-        with open(path,"w") as f:
+    print(entries)
+
+    with open(path,"w") as f:
             json.dump(entries,f,indent=4)
 
 
@@ -94,7 +95,7 @@ def temp(lines,path):
             "temp": parts[0],
             })
 
-        with open(path,"w") as f:
+    with open(path,"w") as f:
             json.dump(entries,f,indent=4)
     
 
