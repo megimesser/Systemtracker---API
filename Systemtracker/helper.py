@@ -68,12 +68,13 @@ def uptime(lines,path):
 def docker_ps(lines,path):
     entries = []
 
-    for line in lines:
+    for line in lines[1:]:
         parts = line.split()
                     
         entries.append({
-            "Container Image": parts[0],
-            "Runtime": parts[3]
+            "container": parts[1],
+            "runtime": parts[3],
+            "status": parts[4]
             })
 
                 
