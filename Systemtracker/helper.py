@@ -73,11 +73,11 @@ def docker_ps(lines,path):
         print(line)
         print(parts)
                     
-       # entries.append({
-        #    "container": parts[1],
-         #   "runtime": parts[3],
-          #  "status": parts[4]
-           # })
+        entries.append({
+            "container": parts[1],
+            "runtime": parts[3],
+            "status": parts[4]
+            })
 
     #print(entries)
 
