@@ -19,7 +19,7 @@ print(DISK_DATA)
 # Topram Prozesse -> ps aux --sort=-%mem | head -10 
 # ps aux --sort=-%cpu | head -10
 
-befehlskette = ["df -h","free -h","uptime","docker ps","vcgencmd measure_temp"]
+befehlskette = ["df -h","free -h","uptime","docker ps --format '{{json .}}'","vcgencmd measure_temp"]
 befehlskette_pipe = ["journalctl | tail -20", "ps aux --sort=-%mem | head -10","ps aux --sort=-%cpu | head -10"]
 
 

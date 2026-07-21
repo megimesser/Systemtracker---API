@@ -9,8 +9,8 @@
     },
     {
         "filesystem": "devfs",
-        "size": "211Ki",
-        "used": "211Ki",
+        "size": "212Ki",
+        "used": "212Ki",
         "available": "0Bi",
         "capacity": "100%",
         "mounted_on": "/dev"
