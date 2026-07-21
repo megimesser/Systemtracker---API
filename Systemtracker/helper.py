@@ -148,7 +148,7 @@ def process_cpu(lines,path):
         entries.append({
             "User" : line[0],
             "PID" : line[1],
-            "%MCPU" : line[2]
+            "%CPU" : line[2]
         })
     
     with open(path,"w") as f:
