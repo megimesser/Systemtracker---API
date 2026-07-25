@@ -1,2 +1,6 @@
 shlex
 sqlalchemy
+psycopg
+database
+fastapi
+uvicorn
