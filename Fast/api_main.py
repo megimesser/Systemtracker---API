@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
 from typing import Optional
+from random import randint
 
 app = FastAPI()
 
@@ -16,7 +17,8 @@ async def root():  #-- Funktion
 
 
 #post 
-@app.post("/createposts")
+@app.post("/test_post")
+# Muss in Postman über den Body eingefügt werden
 def create_posts(payload: dict = Body(...)):
     print(payload)
     return {"message": payload}
@@ -31,15 +33,28 @@ class Post(BaseModel):
     rating: Optional[int] = None
 
 
-my_posts = [{"title":"test", "id":3}
-]
+
 
 # Der Inhalt von Post wird hier validiert
 @app.post("/createposts")
-def create_posts(new_post: Post):
+def create_posts(new_post: Post): # new_post ist hier die Erweiterung vom BaseModel
     print(new_post) # Pydantic Model
     print(new_post.dict()) # Python Dictionary
     return {"message": new_post}
+
+
+my_posts = [{"title":"test", "id":3}
+]
+
+@app.post("/addmyposts")
+def addmyposts(new_post: dict = Body(...)):
+    radomint = randint(0,1000)
+    print(radomint)
+    my_posts.append({
+        "title": new_post["title"],
+        "id": radomint
+    })
+    return my_posts
 
 
 # Post retrieven # Id ist hier der Pathparameter
