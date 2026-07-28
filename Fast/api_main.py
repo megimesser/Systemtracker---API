@@ -25,7 +25,7 @@ def create_posts(payload: dict = Body(...)):
 
 
 # Datenvalidierung über pydantic
-
+# Pydanticmodel
 class Post(BaseModel):
     title: str
     content: str
@@ -39,27 +39,52 @@ class Post(BaseModel):
 @app.post("/createposts")
 def create_posts(new_post: Post): # new_post ist hier die Erweiterung vom BaseModel
     print(new_post) # Pydantic Model
-    print(new_post.dict()) # Python Dictionary
+    print(new_post.model_dump()) # Python Dictionary
     return {"message": new_post}
 
 
 my_posts = [{"title":"test", "id":3}
 ]
 
+
+
+
 @app.post("/addmyposts")
 def addmyposts(new_post: dict = Body(...)):
-    radomint = randint(0,1000)
-    print(radomint)
+    print(new_post)
+
+    randomint = randint(0, 1000)
+    randomint = int(randomint)
+
     my_posts.append({
         "title": new_post["title"],
-        "id": radomint
+        "id": randomint
     })
+
+    print(my_posts)
+
+
     return my_posts
 
 
+# mit Einsatz des Schemas 
+@app.post("/posts_send")
+def create_posts(post: Post):
+    post_dict = post.model_dump()
+    post_dict["id"] = randint(0, 1000)
+    my_posts.append(post_dict)
+
+    return post_dict
+
+# Gesendeter Body über Postman 
+"""{
+    "title": "test_5"
+}"""
+
+
+#Die id muss hier als Integer mitgegeben werden ansonßten bekommt man einen Type Error 
 # Post retrieven # Id ist hier der Pathparameter
 @app.get("/posts/{id}")
-#Die id muss hier als Integer mitgegeben werden ansonßten bekommt man einen Type Error 
 def get_posts(id: int):
     for post in my_posts:
         if post["id"] == id:
