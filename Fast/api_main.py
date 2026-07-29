@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body
+from fastapi import FastAPI, Body, Response, status
 from pydantic import BaseModel
 from typing import Optional
 from random import randint
@@ -16,13 +16,6 @@ async def root():  #-- Funktion
 # Die erste Pathoperation wird immer als erstes genommen 
 
 
-#post 
-@app.post("/test_post")
-# Muss in Postman über den Body eingefügt werden
-def create_posts(payload: dict = Body(...)):
-    print(payload)
-    return {"message": payload}
-
 
 # Datenvalidierung über pydantic
 # Pydanticmodel
@@ -33,6 +26,23 @@ class Post(BaseModel):
     rating: Optional[int] = None
 
 
+# Testdictionary
+my_posts = [{"title":"test", "id":3}
+]
+
+
+
+
+
+#post 
+@app.post("/test_post")
+# Muss in Postman über den Body eingefügt werden
+def create_posts(payload: dict = Body(...)):
+    print(payload)
+    return {"message": payload}
+
+
+
 
 
 # Der Inhalt von Post wird hier validiert
@@ -40,11 +50,10 @@ class Post(BaseModel):
 def create_posts(new_post: Post): # new_post ist hier die Erweiterung vom BaseModel
     print(new_post) # Pydantic Model
     print(new_post.model_dump()) # Python Dictionary
+    my_posts.append(new_post.model_dump())
     return {"message": new_post}
 
 
-my_posts = [{"title":"test", "id":3}
-]
 
 
 
@@ -85,9 +94,44 @@ def create_posts(post: Post):
 #Die id muss hier als Integer mitgegeben werden ansonßten bekommt man einen Type Error 
 # Post retrieven # Id ist hier der Pathparameter
 @app.get("/posts/{id}")
-def get_posts(id: int):
+def get_posts(id: int, response: Response):
     for post in my_posts:
         if post["id"] == id:
             return post
+        
+    """
+        Responsecode für bestimmten Statuscode 
+        elif not post:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"post with id: {id} was not found")
+            response.status_code =  status...
+            return {"message": f"post with id: {id} was not found"}
+
+
+    """
     
     return {"message": "Post not found"}
+
+
+@app.delete("/deletepost/{id}", status_code=status.HTTP_204_NO_CONTENT)
+def deletepost(id: int):
+    """
+    for i, p enumerate(my_posts):
+        if p["id"] == id:
+    """
+        
+    for post in my_posts:
+        if post["id"] == id:
+            my_posts.pop(post)
+            return Response(status_code=status.HTTP_204_NO_CONTENT)
+        return("post - ID ist nicht vorhanden")
+    
+
+@app.get("/showpost")
+def showposts():
+    return my_posts
+
+#path parameter können pro request method 1x den gleichen Namen tragen 
+@app.get("/posts/latest")
+def get_latest_post():
+    post = my_posts[len(my_posts)-1]
+    return {"detail" : post}
