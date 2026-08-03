@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body, Response, status
+from fastapi import FastAPI, Body, Response, status, Request
 from pydantic import BaseModel
 from typing import Optional
 from random import randint
@@ -7,8 +7,20 @@ from psycopg2.extras import RealDictCursor
 import time
 from config import DATABASE_PW
 
+# import des jinja2 Frameworks 
+import os
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+
 
 app = FastAPI()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+
+
+
+
 
 @app.get("/") #-- Method mit Path
 async def root():  #-- Funktion
@@ -42,6 +54,74 @@ while True:
         time.sleep(2)
 
         
+
+
+### Abruf von Datenbank via Pyhton
+#Post retrieven übe Python 
+@app.get("/python/posts")
+def get_pposts():
+    cursor.execute("""SELECT * FROM public.testtable""")
+    posts = cursor.fetchall()
+    print(posts)
+    return{"data": posts}
+
+
+#create posts
+@app.post("/python/post", status_code=status.HTTP_201_CREATED)
+def create_posts(payload: Post):
+
+    cursor.execute(
+        """
+        INSERT INTO public.testtable (name, number)
+        VALUES (%s, %s) RETURNING *
+        """,
+        (payload.title, payload.number)
+    )
+
+    #back = cursor.fetchone()
+
+    conn.commit()
+
+    return payload, 
+
+
+# Post per ID Fetchen 
+@app.get("/python/posts/{id}")
+def fetch_posts(id):
+    print(type(id))
+    cursor.execute("""SELECT * from public.testtable WHERE id = %s""",(id))
+    post = cursor.fetchone()
+    print(post)
+
+    return post
+
+
+
+
+
+
+
+
+### Dashboard
+
+@app.get("/dashboard", response_class=HTMLResponse)
+def dashboard(request: Request):
+    cursor.execute("""SELECT * FROM public.testtable""")
+    posts = cursor.fetchall()
+    return templates.TemplateResponse(
+    request,                                    # request als ERSTES Argument
+    "index.html",                               # dann der Template-Name
+    {"titel": posts}                  # dann der Context (ohne request!)
+)
+
+
+
+
+
+
+
+
+
 
 
 
