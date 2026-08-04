@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body, Response, status, Request
+from fastapi import FastAPI, Body, Response, status, Request, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from random import randint
@@ -18,6 +18,7 @@ app = FastAPI()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
+print(DATABASE_PW)
 
 
 
@@ -87,19 +88,65 @@ def create_posts(payload: Post):
 
 # Post per ID Fetchen 
 @app.get("/python/posts/{id}")
-def fetch_posts(id):
-    print(type(id))
-    cursor.execute("""SELECT * from public.testtable WHERE id = %s""",(id))
+def fetch_posts(id: int):
+
+    cursor.execute(
+        """SELECT * FROM public.testtable WHERE id = %s""",
+        (id,)
+    )
     post = cursor.fetchone()
-    print(post)
+    if not post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"post with id:{id} was not found"
+        )
 
     return post
 
 
 
+# Deleting per ID python 
+@app.delete("/python/posts/{id}")
+def delete_posts(id: int):
 
+    cursor.execute(
+        """DELETE  FROM public.testtable WHERE id = %s RETURNING *""",(id,)
+    )
+    delete_post = cursor.fetchall()
+    conn.commit()
 
+    if not delete_post: 
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"post with id:{id} was not found"
+        )
 
+    
+#Updating per ID Pyton
+
+@app.put("/python/posts/{id}")
+def update_posts(id: int, payload: dict = Body(...)):
+
+    cursor.execute(
+        """
+        UPDATE public.testtable
+        SET name = %s, number = %s
+        WHERE id = %s
+        RETURNING *
+        """,
+        (payload["name"], payload["number"], id)
+    )
+
+    update_post = cursor.fetchone()
+    conn.commit()
+
+    if not update_post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"post with id:{id} was not found"
+        )
+
+    return update_post
 
 
 ### Dashboard

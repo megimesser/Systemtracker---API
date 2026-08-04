@@ -22,6 +22,12 @@ CPU_DATA = BASE_DIR / "data" / "cpu.json"
 load_dotenv(BASE_DIR / ".env")
 
 DATABASE_PW = os.getenv("DATABASE_PW")
+
+
+
+DATABASE_USER = os.getenv("POSTGRES_USER")
+DATABASE_PW = os.getenv("POSTGRES_PASSWORD")
+DATABASE_DB = os.getenv("POSTGRES_DB")
  
 #Befehlskette 
 # Diese Befehlskette sollen beim Aufruf des Systemtrackers alle durchgeführt werden 

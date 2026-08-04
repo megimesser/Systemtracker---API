@@ -1,0 +1,47 @@
+[
+    {
+        "User": "maximil+",
+        "PID": "156813",
+        "%CPU": "4.4"
+    },
+    {
+        "User": "maximil+",
+        "PID": "122758",
+        "%CPU": "0.2"
+    },
+    {
+        "User": "maximil+",
+        "PID": "1573",
+        "%CPU": "0.2"
+    },
+    {
+        "User": "root",
+        "PID": "1254",
+        "%CPU": "0.0"
+    },
+    {
+        "User": "root",
+        "PID": "1245",
+        "%CPU": "0.0"
+    },
+    {
+        "User": "maximil+",
+        "PID": "1325",
+        "%CPU": "0.0"
+    },
+    {
+        "User": "root",
+        "PID": "1454",
+        "%CPU": "0.0"
+    },
+    {
+        "User": "maximil+",
+        "PID": "156496",
+        "%CPU": "0.0"
+    },
+    {
+        "User": "root",
+        "PID": "156739",
+        "%CPU": "0.0"
+    }
+]

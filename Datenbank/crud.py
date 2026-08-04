@@ -29,7 +29,6 @@ def speichere_positionen(daten: list[dict]) -> str:
         session.add_all(objekte)
         return len(objekte)
 
-
 def speichere_positionen_ram(daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
@@ -128,4 +127,3 @@ if __name__ == "__main__":
     speichere_positionen_temp(opener(TEMP_DATA))
     speichere_positionen_proc(opener(MEM_DATA))
     speichere_positionen_cpu(opener(CPU_DATA))
-    
