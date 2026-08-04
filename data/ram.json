@@ -1,0 +1,16 @@
+[
+    {
+        "marker": "Mem:",
+        "total": "3.7Gi",
+        "used": "1.2Gi",
+        "free": "80Mi",
+        "available": "2.5Gi"
+    },
+    {
+        "marker": "Swap:",
+        "total": "2.0Gi",
+        "used": "4.2Mi",
+        "free": "2.0Gi",
+        "available": "2.0Gi"
+    }
+]

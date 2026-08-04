@@ -6,11 +6,18 @@ from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_
 
 
 def opener(data):
-    with open (data,"r") as f:
-        return json.load(f)
+    try:
+        with open(data, "r") as f:
+            return json.load(f)
 
+    except json.JSONDecodeError as err:
+        print(f"Die Datei {data} kann leider nicht verarbeitet werden")
+        print(err)
+        raise
 
-
+    except TypeError as err_t:
+        print(f"Fehler: {err_t}")
+        raise
 
 
 def speichere_positionen(daten: list[dict]) -> str:
