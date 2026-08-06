@@ -46,6 +46,7 @@ def systemabruf(befehlskette):
 
             if befehl == ['hostenamectl']:
                 host(line,HOST_DATA)
+                print("hierkommt hostename")
 
             if befehl == ['free', '-h']:
                 free(lines,RAM_DATA)

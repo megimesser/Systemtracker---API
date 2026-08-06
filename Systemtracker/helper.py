@@ -30,6 +30,7 @@ def host(lines,path):
     for line in lines:
         parts = lines.split()
         print(parts)
+        return parts
 
 
 
