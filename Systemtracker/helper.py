@@ -29,6 +29,10 @@ def host(lines,path):
     entries = []
     print(lines)
     for line in lines:
+
+        result = re.sub(r"^.*?:", "", line)
+        print(result)
+
         entries.append(line)
    
     
