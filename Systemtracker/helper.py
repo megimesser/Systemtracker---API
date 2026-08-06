@@ -27,8 +27,8 @@ def df(lines,path):
 
 def host(lines,path):
     entries = []
-    for line in lines:
-        print(lines)
+    print(lines)
+   
        
 
 
