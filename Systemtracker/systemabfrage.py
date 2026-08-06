@@ -19,7 +19,7 @@ print(DISK_DATA)
 # Topram Prozesse -> ps aux --sort=-%mem | head -10 
 # ps aux --sort=-%cpu | head -10
 
-befehlskette = ["df -h","free -h","uptime","docker ps --format '{{json .}}'","vcgencmd measure_temp"]
+befehlskette = ["df -h","free -h","uptime","docker ps --format '{{json .}}'","vcgencmd measure_temp","hostenamectl"]
 befehlskette_pipe = ["journalctl | tail -20", "ps aux --sort=-%mem | head -10","ps aux --sort=-%cpu | head -10"]
 
 
@@ -43,6 +43,9 @@ def systemabruf(befehlskette):
 
             if befehl == ['df', '-h']:
                 df(lines,DISK_DATA)#"disk.json")
+
+            if befehl == ['hostenamectl']:
+                host(line,HOST_DATA)
 
             if befehl == ['free', '-h']:
                 free(lines,RAM_DATA)
@@ -148,4 +151,4 @@ def systemabruf_pipe(befehlskette_pipe):
 
 if __name__ == "__main__":
     print(systemabruf(befehlskette))
-    print(systemabruf_pipe(befehlskette_pipe))
+    #print(systemabruf_pipe(befehlskette_pipe))

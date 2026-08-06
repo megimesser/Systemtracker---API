@@ -1,9 +1,73 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <title>{{ titel }}</title>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    <style>
+
+    :root{
+        --bg: #0B0F0C;
+        --surface: #131A14;
+        --primary: #00FF41;
+        --primary-hover: #39FF14;
+        --text: #E5E7EB;
+    }
+
+    h1{
+        font-size: 3.5rem;
+    }
+
+    h1,p{
+        color:var(--primary)
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+    }
+
+    code,
+    pre {
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    #main_wrapper{
+        padding-left:100px;
+        padding-right:100px;
+        padding-top:100px;
+
+    }
+
+    #main_top_wrapper{
+        outline: #00FF41;
+        outline-style: solid;
+        outline-width: 1px;
+        padding: 10px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
 </head>
-<body>
-    <h1>{{ titel }}</h1>
+<body style="background:#0B0F0C">
+    <div id="main_wrapper">
+        <div id="main_top_wrapper">
+            <h1>Systemanalyzer<span style="font-size: 1rem;"> by Maximilian H.</span></h1>
+
+        </div>
+        
+        
+        <p>{{ titel }}</p>
+    </div>
 </body>
 </html>

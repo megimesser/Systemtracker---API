@@ -1,0 +1,47 @@
+[
+    {
+        "User": "maximil+",
+        "PID": "122758",
+        "%MEM": "17.2"
+    },
+    {
+        "User": "maximil+",
+        "PID": "1325",
+        "%MEM": "2.6"
+    },
+    {
+        "User": "root",
+        "PID": "1454",
+        "%MEM": "2.5"
+    },
+    {
+        "User": "root",
+        "PID": "1254",
+        "%MEM": "1.7"
+    },
+    {
+        "User": "maximil+",
+        "PID": "1573",
+        "%MEM": "1.5"
+    },
+    {
+        "User": "maximil+",
+        "PID": "1682",
+        "%MEM": "1.4"
+    },
+    {
+        "User": "maximil+",
+        "PID": "1575",
+        "%MEM": "1.1"
+    },
+    {
+        "User": "root",
+        "PID": "1245",
+        "%MEM": "0.8"
+    },
+    {
+        "User": "root",
+        "PID": "1250",
+        "%MEM": "0.7"
+    }
+]

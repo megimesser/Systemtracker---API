@@ -99,7 +99,7 @@ def speichere_positionen_proc(daten: list[dict]) -> str:
             Proc(
                 user=eintrag["User"],  
                 pid=eintrag["PID"], 
-                mem=eintrag["%MEM"], 
+                Mem=eintrag["%MEM"], 
             )
             for eintrag in daten
         ]
@@ -113,7 +113,7 @@ def speichere_positionen_cpu(daten: list[dict]) -> str:
             Cpu(
                 user=eintrag["User"],  
                 pid=eintrag["PID"], 
-                cpu=eintrag["%CPU"], 
+                CPU=eintrag["%CPU"], 
             )
             for eintrag in daten
         ]

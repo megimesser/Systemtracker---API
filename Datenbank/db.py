@@ -44,3 +44,13 @@ def get_session():
         raise
     finally:
         session.close()
+
+
+
+
+def get_db():
+    session = SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()

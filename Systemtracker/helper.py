@@ -25,6 +25,16 @@ def df(lines,path):
     
 
 
+def host(lines,path):
+    entries = []
+    for line in lines:
+        parts = lines.split()
+        print(parts)
+
+
+
+
+
 def free(lines,path):
     entries = []
     for line in lines[1:]:
