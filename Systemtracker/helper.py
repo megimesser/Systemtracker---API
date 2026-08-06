@@ -27,15 +27,31 @@ def df(lines,path):
 
 def host(lines,path):
     entries = []
+    zwischenspeicher = []
     print(lines)
     for line in lines:
 
         result = re.sub(r"^.*?:", "", line)
-        print(result)
+        
 
-        entries.append(line)
+        zwischenspeicher.append(result)
+    
+    entries.append({
+            "hostname": parts[0],
+            "system": parts[4],
+            "kernel": parts[5],
+            "architecture": parts[6],
+            
+                                        })
+    
+    with open(path, "w") as f:
+        json.dump(entries, f, indent=4)
+    
    
     
+    
+
+
     print(entries)
        
 
