@@ -45,7 +45,7 @@ def systemabruf(befehlskette):
                 df(lines,DISK_DATA)#"disk.json")
 
             if befehl == ['hostnamectl']:
-                host(line,HOST_DATA)
+                host(lines,HOST_DATA)
                 print("hierkommt hostename")
 
             if befehl == ['free', '-h']:
