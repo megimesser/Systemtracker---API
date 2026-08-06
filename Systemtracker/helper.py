@@ -28,7 +28,11 @@ def df(lines,path):
 def host(lines,path):
     entries = []
     print(lines)
+    for line in lines:
+        entries.append(line)
    
+    
+    print(entries)
        
 
 
