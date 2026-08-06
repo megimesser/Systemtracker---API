@@ -37,10 +37,10 @@ def host(lines,path):
         zwischenspeicher.append(result)
     
     entries.append({
-            "hostname": parts[0],
-            "system": parts[4],
-            "kernel": parts[5],
-            "architecture": parts[6],
+            "hostname": zwischenspeicher[0],
+            "system": zwischenspeicher[4],
+            "kernel": zwischenspeicher[5],
+            "architecture": zwischenspeicher[6],
             
                                         })
     
