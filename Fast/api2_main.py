@@ -7,10 +7,10 @@ from random import randint
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import time
-from config import DATABASE_DB, DATABASE_PW, DATABASE_USER
+from config import DATABASE_DB, DATABASE_PW, DATABASE_USER,COUNTER_DATA
 from Datenbank.db import get_session, get_db
 from Datenbank.models import Datentraeger
-
+import json
 
 from sqlalchemy.orm import Session, sessionmaker,query
 # import des jinja2 Frameworks 
@@ -23,6 +23,13 @@ app = FastAPI()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+
+def opener(data):
+    with open(data,"r") as f:
+        number = json.load(f)
+    return number 
+
+
 
 while True:
     try: 
@@ -38,12 +45,75 @@ while True:
 
 @app.get("/dashboard", response_class=HTMLResponse)
 def dashboard(request: Request):
-    cursor.execute("""SELECT * FROM discinformation""")
+
+    number = opener(COUNTER_DATA)
+
+    docker = number["DOCKER"]
+    disc = number["DATA"]
+    sys = number["SYS"]
+    ram = number["RAM"]
+    temp = number["TEMP"]
+    proc = number["PROC"]
+    cpu = number["CPU"]
+    host = number["HOST"]
+
+
+
+
+    cursor.execute("""SELECT * FROM discinformation LIMIT %s""",
+    (disc,))
     posts = cursor.fetchall()
+
+    cursor.execute("""SELECT * FROM hostinformation LIMIT %s""",
+    (host,))
+    hostname = cursor.fetchall()
+
+    cursor.execute("""SELECT * FROM temperaturinformation LIMIT %s""",
+    (temp,))
+    temp = cursor.fetchall(
+    )
+
+
+    cursor.execute("""SELECT * FROM dockerinformation LIMIT %s""",
+    (docker,))
+    docker = cursor.fetchall()
+
+
+    cursor.execute("""SELECT * FROM prozessinformation LIMIT 10""",
+    )
+    prozess = cursor.fetchall()
+
+    cursor.execute("""SELECT * FROM discinformation LIMIT %s""",
+    (disc,))
+    disc = cursor.fetchall()
+
+    cursor.execute("""SELECT * FROM raminformation LIMIT %s""",
+    (ram,))
+    ram = cursor.fetchall()
+
+    cursor.execute("""SELECT * FROM sysinformation LIMIT %s""",
+    (sys,))
+    sys = cursor.fetchall()
+
+
+
+
     return templates.TemplateResponse(
     request,                                    # request als ERSTES Argument
     "index.html",                               # dann der Template-Name
-    {"titel": posts}                  # dann der Context (ohne request!)
+    {
+    "host": hostname,
+    "temp": temp,
+    "docker": docker,
+    "prozess": prozess,
+    "disc": disc,
+    "ram": ram,
+
+    # Für Sys wird für den Loadaverage eventuell noch nproc benötigt
+    "sys":sys
+    
+    }
+                      # dann der Context (ohne request!)
 )
 
 
@@ -55,7 +125,7 @@ def create_hero(db: Session = Depends(get_db)):
     posts = db.query(Datentraeger).all()
     return{"status": posts}
 
-
+# Pydantic Models definieren die Struktur eines requests & responses 
 class Testmodel(BaseModel):
     test: str
 

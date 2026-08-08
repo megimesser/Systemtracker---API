@@ -3,14 +3,14 @@
         "filesystem": "/dev/disk3s3s1",
         "size": "926Gi",
         "used": "12Gi",
-        "available": "538Gi",
+        "available": "534Gi",
         "capacity": "3%",
         "mounted_on": "/"
     },
     {
         "filesystem": "devfs",
-        "size": "210Ki",
-        "used": "210Ki",
+        "size": "212Ki",
+        "used": "212Ki",
         "available": "0Bi",
         "capacity": "100%",
         "mounted_on": "/dev"
@@ -19,7 +19,7 @@
         "filesystem": "/dev/disk3s6",
         "size": "926Gi",
         "used": "20Ki",
-        "available": "538Gi",
+        "available": "534Gi",
         "capacity": "1%",
         "mounted_on": "/System/Volumes/VM"
     },
@@ -27,7 +27,7 @@
         "filesystem": "/dev/disk3s4",
         "size": "926Gi",
         "used": "8.5Gi",
-        "available": "538Gi",
+        "available": "534Gi",
         "capacity": "2%",
         "mounted_on": "/System/Volumes/Preboot"
     },
@@ -35,7 +35,7 @@
         "filesystem": "/dev/disk3s2",
         "size": "926Gi",
         "used": "41Mi",
-        "available": "538Gi",
+        "available": "534Gi",
         "capacity": "1%",
         "mounted_on": "/System/Volumes/Update"
     },
@@ -66,9 +66,9 @@
     {
         "filesystem": "/dev/disk3s1",
         "size": "926Gi",
-        "used": "367Gi",
-        "available": "538Gi",
-        "capacity": "41%",
+        "used": "371Gi",
+        "available": "534Gi",
+        "capacity": "42%",
         "mounted_on": "/System/Volumes/Data"
     },
     {

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+  
+    <style>
+
+    :root{
+        --bg: #0B0F0C;
+        --surface: #131A14;
+        --primary: #00FF41;
+        --primary-hover: #39FF14;
+        --text: #E5E7EB;
+    }
+
+    h1{
+        font-size: 3.5rem;
+    }
+
+    h1,h2,p{
+        color:var(--primary)
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+    }
+
+    code,
+    pre {
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    #main_wrapper{
+        padding-left:100px;
+        padding-right:100px;
+        padding-top:100px;
+        padding-bottom:100px;
+        
+
+
+    }
+
+    #main_top_wrapper{
+        outline: #00FF41;
+        outline-style: solid;
+        outline-width: 1px;
+        padding: 10px;
+        width: 80vw;
+    }
+
+    table{
+        color:var(--primary)
+    }
+
+    tr,th,td{
+        text-align: center;
+        padding: 1rem;
+        outline: #00FF41;
+        outline-style: solid;
+        outline-width: 1px;
+    }
+
+    caption{
+        text-align: left;
+        font-size: 2rem;
+        padding-bottom: 1rem;
+        font-family: "JetBrains Mono";
+    }
+
+    #top-section{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        
+    
+        flex-direction: row;
+    }
+
+    #mid-wrapper{
+
+        display: flex;
+        
+
+    }
+
+    #prozess_wrapper{
+        padding-left:50px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body style="background:#0B0F0C">
+    <div id="main_wrapper">
+        <h1>Systemanalyzer<span style="font-size: 1rem;"></span></h1>
+        
+        <div id="main_top_wrapper">
+            <div id = "top-section">
+                <div>
+                
+                    {% for h in host %}
+                    <p><b>Hostname:  </b> {{ h.hostname }}</p>
+                    <p>OS:   {{ h.system }}</p>
+                    <p>Kernel:   {{ h.kernel}}</p>
+                    <p>Architecture:   {{ h.system }}</p>
+                    {% endfor %}
+
+                    {%for t in temp %}
+                    <p>Temp: {{ t.temp }}</p>
+                    {% endfor %}
+        
+                </div>
+            <div id="main_top_second_wrapper">
+                
+                {% for h in sys %}
+                <p><b>Uptime </b> {{ h.uptime}}</p>
+                <p>Users:   {{ h.users }}</p>
+                <p>Load_average:   {{ h.load_averages}}</p>
+                
+                {% endfor %}
+
+            
+            </div>
+        </div>
+    </div>
+
+    <div id="warning-wrapper"></div>
+        <h2>Aktuelle Warnungen</h2>
+
+
+    <div  id="mid-wrapper">
+
+        <div id="docker_wrapper">
+            <h2>Containerinformation 🐳</h2>
+        
+            <table>
+               
+        
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Ports</th>
+                    <th>Status</th>
+                </tr>
+        
+                {% for h in docker %}
+                <tr>
+                    <td>{{ h.name }}</td>
+                    <td>{{ h.image }}</td>
+                    <td>{{ h.ports }}</td>
+                    <td>{{ h.status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div id="prozess_wrapper">
+            <h2>Prozessinformationen ⚙️ </h2>
+        
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>PID</th>
+                    <th>Mem</th>
+                </tr>
+        
+                {% for h in prozess %}
+                <tr>
+                    <td>{{ h.user }}</td>
+                    <td>{{ h.pid }}</td>
+                    <td>{{ h.Mem }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+        <div id="disc_wrapper">
+            <h2>Raminformation</h2>
+        
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Total</th>
+                    <th>Used</th>
+                    <th>Free</th>
+                    <th>available</th>
+                </tr>
+        
+                {% for h in ram %}
+                <tr>
+                    <td>{{ h.marker }}</td>
+                    <td>{{ h.total}}</td>
+                    <td>{{ h.used }}</td>
+                    <td>{{ h.free }}</td>
+                    <td>{{ h.available}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    
+    </div>
+
+
+        <div id="disc_wrapper">
+            <h2>Diskinformation</h2>
+        
+            <table>
+                <tr>
+                    <th>Filesystem</th>
+                    <th>Size</th>
+                    <th>Available</th>
+                    <th>Capacity</th>
+                    <th>Mount</th>
+                </tr>
+        
+                {% for h in disc %}
+                <tr>
+                    <td>{{ h.filesystem }}</td>
+                    <td>{{ h.size }}</td>
+                    <td>{{ h.available }}</td>
+                    <td>{{ h.capacity }}</td>
+                    <td>{{ h.mounted_on }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+       
+
+
+
+
+        
+
+
+
+
+        
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+        
+        
+       
+
+    </div>
+</body>
+</html>

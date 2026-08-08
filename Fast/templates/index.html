@@ -2,72 +2,485 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <title>Systemanalyzer</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     <style>
-
-    :root{
-        --bg: #0B0F0C;
-        --surface: #131A14;
+    :root {
+        --bg: #0A0E0A;
+        --bg-deep: #060906;
+        --surface: #0F150F;
+        --surface-raised: #131C13;
+        --line: #1F3A1F;
+        --line-bright: #2A5A2A;
         --primary: #00FF41;
+        --primary-dim: #00B82F;
         --primary-hover: #39FF14;
-        --text: #E5E7EB;
+        --amber: #FFB000;
+        --red: #FF3B30;
+        --text: #C8E6C8;
+        --text-dim: #6B8F6B;
+        --mono: "JetBrains Mono", "SF Mono", "Menlo", monospace;
     }
 
-    h1{
-        font-size: 3.5rem;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    h1,p{
-        color:var(--primary)
+    html {
+        font-size: 15px;
     }
 
     body {
-        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        background-image:
+            radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 255, 65, 0.08), transparent),
+            linear-gradient(rgba(0, 255, 65, 0.02) 1px, transparent 1px);
+        background-size: 100% 100%, 100% 3px;
+        color: var(--text);
+        font-family: var(--mono);
+        line-height: 1.5;
+        min-height: 100vh;
+        letter-spacing: 0.02em;
     }
 
-    code,
-    pre {
-        font-family: "JetBrains Mono", monospace;
+    /* Scanline overlay */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+        z-index: 9999;
+        opacity: 0.4;
     }
 
-    #main_wrapper{
-        padding-left:100px;
-        padding-right:100px;
-        padding-top:100px;
-
+    #main_wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem 4rem;
     }
 
-    #main_top_wrapper{
-        outline: #00FF41;
-        outline-style: solid;
-        outline-width: 1px;
-        padding: 10px;
+    /* ---- Header ---- */
+    .masthead {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        border-bottom: 1px solid var(--line-bright);
+        padding-bottom: 1.25rem;
+        margin-bottom: 2rem;
     }
 
+    .masthead h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--primary);
+        letter-spacing: 0.06em;
+        text-shadow: 0 0 12px rgba(0, 255, 65, 0.5);
+    }
 
+    .masthead h1 .prompt {
+        color: var(--primary-dim);
+    }
 
+    .masthead h1 .cursor {
+        display: inline-block;
+        width: 0.6ch;
+        background: var(--primary);
+        animation: blink 1.1s steps(1) infinite;
+        margin-left: 0.1ch;
+    }
 
+    @keyframes blink { 50% { opacity: 0; } }
 
+    .masthead .clock {
+        font-size: 0.85rem;
+        color: var(--text-dim);
+        text-align: right;
+    }
+    .masthead .clock .live {
+        color: var(--primary);
+    }
 
+    /* ---- Section labels ---- */
+    .section-label {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--text-dim);
+        margin: 0 0 0.9rem;
+    }
+    .section-label::before {
+        content: "▸";
+        color: var(--primary);
+    }
+    .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+    }
 
+    /* ---- Panels ---- */
+    .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        position: relative;
+    }
 
+    /* Top host/system strip */
+    #host-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0;
+        margin-bottom: 2.5rem;
+    }
+    #host-strip > .cell {
+        padding: 1.4rem 1.6rem;
+        border-right: 1px solid var(--line);
+    }
+    #host-strip > .cell:last-child { border-right: none; }
 
+    .cell .kv {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.28rem 0;
+        font-size: 0.9rem;
+    }
+    .cell .kv .k {
+        color: var(--text-dim);
+    }
+    .cell .kv .v {
+        color: var(--text);
+        text-align: right;
+    }
+    .cell .kv .v.accent { color: var(--primary); }
 
+    .cell-title {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--primary-dim);
+        margin-bottom: 0.9rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px dashed var(--line);
+    }
 
+    /* ---- Grid for the data panels ---- */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
 
+    .panel-head {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.9rem 1.2rem;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.95rem;
+        color: var(--primary);
+        letter-spacing: 0.04em;
+    }
+    .panel-head .glyph { font-size: 1.05rem; }
+    .panel-head .count {
+        margin-left: auto;
+        font-size: 0.72rem;
+        color: var(--text-dim);
+        background: var(--bg-deep);
+        border: 1px solid var(--line);
+        padding: 0.1rem 0.5rem;
+        border-radius: 2px;
+    }
+
+    .panel-body { padding: 0.4rem 0; overflow-x: auto; }
+
+    /* ---- Tables ---- */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+    }
+    thead th {
+        text-align: left;
+        font-weight: 500;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-dim);
+        padding: 0.5rem 1.2rem;
+        border-bottom: 1px solid var(--line);
+    }
+    tbody td {
+        padding: 0.6rem 1.2rem;
+        border-bottom: 1px solid rgba(31, 58, 31, 0.4);
+        color: var(--text);
+        white-space: nowrap;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td {
+        background: rgba(0, 255, 65, 0.04);
+        color: var(--primary-hover);
+    }
+    td.name { color: var(--primary); }
+    td.dim { color: var(--text-dim); }
+
+    /* status pill */
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        padding: 0.12rem 0.5rem;
+        border-radius: 2px;
+        border: 1px solid currentColor;
+    }
+    .status::before {
+        content: "";
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: 0 0 6px currentColor;
+    }
+    .status.up { color: var(--primary); }
+    .status.warn { color: var(--amber); }
+    .status.down { color: var(--red); }
+
+    /* usage bar for RAM/disk capacity */
+    .bar {
+        --pct: 0%;
+        position: relative;
+        height: 6px;
+        width: 100px;
+        background: var(--bg-deep);
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .bar::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: var(--pct);
+        background: linear-gradient(90deg, var(--primary-dim), var(--primary));
+        box-shadow: 0 0 8px var(--primary);
+    }
+    .bar.high::after {
+        background: linear-gradient(90deg, var(--amber), var(--red));
+        box-shadow: 0 0 8px var(--red);
+    }
+
+    .empty {
+        padding: 1.2rem;
+        color: var(--text-dim);
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    /* full-width panel for disk */
+    .panel.full { margin-top: 0; }
+
+    @media (max-width: 720px) {
+        #host-strip { grid-template-columns: 1fr; }
+        #host-strip > .cell { border-right: none; border-bottom: 1px solid var(--line); }
+        .masthead h1 { font-size: 1.7rem; }
+    }
     </style>
 </head>
-<body style="background:#0B0F0C">
+<body>
     <div id="main_wrapper">
-        <div id="main_top_wrapper">
-            <h1>Systemanalyzer<span style="font-size: 1rem;"> by Maximilian H.</span></h1>
+
+        <header class="masthead">
+            <h1><span class="prompt">~/</span>systemanalyzer<span class="cursor">&nbsp;</span></h1>
+            <div class="clock">
+                <div>SESSION <span class="live">● LIVE</span></div>
+                <div id="uhr">--:--:--</div>
+            </div>
+        </header>
+
+        <!-- ===== HOST / SYSTEM STRIP ===== -->
+        <div id="host-strip" class="panel">
+            <div class="cell">
+                <div class="cell-title">Host</div>
+                {% for h in host %}
+                <div class="kv"><span class="k">hostname</span><span class="v accent">{{ h.hostname }}</span></div>
+                <div class="kv"><span class="k">os</span><span class="v">{{ h.system }}</span></div>
+                <div class="kv"><span class="k">kernel</span><span class="v">{{ h.kernel }}</span></div>
+                <div class="kv"><span class="k">arch</span><span class="v">{{ h.architecture | default(h.system) }}</span></div>
+                {% endfor %}
+            </div>
+
+            <div class="cell">
+                <div class="cell-title">Laufzeit</div>
+                {% for h in sys %}
+                <div class="kv"><span class="k">uptime</span><span class="v accent">{{ h.uptime }}</span></div>
+                <div class="kv"><span class="k">users</span><span class="v">{{ h.users }}</span></div>
+                <div class="kv"><span class="k">load avg</span><span class="v">{{ h.load_averages }}</span></div>
+                {% endfor %}
+            </div>
+
+            <div class="cell">
+                <div class="cell-title">Thermik</div>
+                {% for t in temp %}
+                <div class="kv"><span class="k">core temp</span><span class="v accent">{{ t.temp }}</span></div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- ===== DOCKER (full width) ===== -->
+        <div class="panel" style="margin-bottom: 1.5rem;">
+            <div class="panel-head">
+                <span class="glyph">🐳</span> Container
+                <span class="count">{{ docker | length }} aktiv</span>
+            </div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr><th>Name</th><th>Image</th><th>Ports</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                    {% for h in docker %}
+                        <tr>
+                            <td class="name">{{ h.name }}</td>
+                            <td class="dim">{{ h.image }}</td>
+                            <td class="dim">{{ h.ports | default("—") }}</td>
+                            <td>
+                                {% if "Up" in h.status %}<span class="status up">{{ h.status }}</span>
+                                {% elif "Restarting" in h.status or "Paused" in h.status %}<span class="status warn">{{ h.status }}</span>
+                                {% else %}<span class="status down">{{ h.status }}</span>{% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="4" class="empty">Keine Container aktiv.</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== DATA GRID ===== -->
+        <div class="grid">
+
+            <!-- Prozesse -->
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="glyph">⚙</span> Top-Prozesse
+                    <span class="count">{{ prozess | length }}</span>
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <thead>
+                            <tr><th>User</th><th>PID</th><th>Mem</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for h in prozess %}
+                            <tr>
+                                <td class="name">{{ h.user }}</td>
+                                <td class="dim">{{ h.pid }}</td>
+                                <td>{{ h.Mem }}</td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="3" class="empty">Keine Prozessdaten.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RAM -->
+            <div class="panel">
+                <div class="panel-head">
+                    <span class="glyph">▤</span> Arbeitsspeicher
+                    <span class="count">{{ ram | length }}</span>
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <thead>
+                            <tr><th>Type</th><th>Total</th><th>Used</th><th>Free</th><th>Avail</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for h in ram %}
+                            <tr>
+                                <td class="name">{{ h.marker }}</td>
+                                <td>{{ h.total }}</td>
+                                <td>{{ h.used }}</td>
+                                <td class="dim">{{ h.free }}</td>
+                                <td class="dim">{{ h.available }}</td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="5" class="empty">Keine RAM-Daten.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </div>
-        
-        
-        <p>{{ titel }}</p>
+
+        <!-- Disk full width -->
+        <div class="panel full">
+            <div class="panel-head">
+                <span class="glyph">▦</span> Dateisysteme
+                <span class="count">{{ disc | length }} mounts</span>
+            </div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr><th>Filesystem</th><th>Size</th><th>Available</th><th>Capacity</th><th></th><th>Mounted on</th></tr>
+                    </thead>
+                    <tbody>
+                    {% for h in disc %}
+                        <tr>
+                            <td class="name">{{ h.filesystem }}</td>
+                            <td>{{ h.size }}</td>
+                            <td class="dim">{{ h.available }}</td>
+                            <td>{{ h.capacity }}</td>
+                            <td>
+                                <span class="bar {% if h.capacity is defined and h.capacity|string|replace('%','')|int >= 80 %}high{% endif %}"
+                                      style="--pct: {{ h.capacity | default('0%') }}"></span>
+                            </td>
+                            <td class="dim">{{ h.mounted_on }}</td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="6" class="empty">Keine Dateisysteme gefunden.</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
+
+    <script>
+        // kleine Live-Uhr, rein kosmetisch
+        function tick() {
+            const d = new Date();
+            const p = n => String(n).padStart(2, '0');
+            const el = document.getElementById('uhr');
+            if (el) el.textContent = `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+        }
+        tick();
+        setInterval(tick, 1000);
+    </script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 #from sqlalchemy import select 
 from Datenbank.db import get_session
-from Datenbank.models import Datentraeger, Ram,Sysinfo,Docker,Temp,Proc,Cpu
+from Datenbank.models import Datentraeger, Ram,Sysinfo,Docker,Temp,Proc,Cpu,Host
 import json
-from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA,MEM_DATA,CPU_DATA
+from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA,MEM_DATA,CPU_DATA,HOST_DATA,COUNTER_DATA
 
 
 def opener(data):
@@ -20,7 +20,23 @@ def opener(data):
         raise
 
 
-def speichere_positionen(daten: list[dict]) -> str:
+
+def counter(data, field, number):
+
+    
+    # JSON laden
+    with open(data, "r", encoding="utf-8") as file:
+        f = json.load(file)
+
+    # Wert ändern
+    f[field] = number
+
+    # Dictionary wieder speichern
+    with open(data, "w", encoding="utf-8") as file:
+        json.dump(f, file, indent=4, ensure_ascii=False)
+
+
+def speichere_positionen(counter_path,daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Datentraeger(
@@ -34,9 +50,12 @@ def speichere_positionen(daten: list[dict]) -> str:
             for eintrag in daten
         ]
         session.add_all(objekte)
-        return len(objekte)
 
-def speichere_positionen_ram(daten: list[dict]) -> str:
+        counter(counter_path,"DATA",len(objekte))
+        return print(len(objekte))
+
+
+def speichere_positionen_ram(counter_path,daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Ram(
@@ -49,10 +68,12 @@ def speichere_positionen_ram(daten: list[dict]) -> str:
             for eintrag in daten
         ]
         session.add_all(objekte)
-        return len(objekte)
+
+        counter(counter_path,"RAM",len(objekte))
+        return print(len(objekte))
 
 
-def speichere_positionen_sys(daten: list[dict]) -> str:
+def speichere_positionen_sys(counter_path,daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Sysinfo(
@@ -63,25 +84,31 @@ def speichere_positionen_sys(daten: list[dict]) -> str:
             for eintrag in daten
         ]
         session.add_all(objekte)
-        return len(objekte)
+
+        counter(counter_path,"SYS",len(objekte))
+        return print(len(objekte))
 
 
-def speichere_positionen_docker(daten: list[dict]) -> str:
+def speichere_positionen_docker(counter_path,daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Docker(
-                image=eintrag["container"],
+                image= eintrag["image"],
+                name=eintrag["container"],
                 runtime=eintrag["runtime"],
-                status = eintrag["status"]
+                status = eintrag["status"],
+                ports=eintrag["ports"]
             )
             for eintrag in daten
         ]
         session.add_all(objekte)
+
+        counter(counter_path,"DOCKER",len(objekte))
         return len(objekte)
     
 
 
-def speichere_positionen_temp(daten: list[dict]) -> str:
+def speichere_positionen_temp(counter_path,daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Temp(
@@ -90,10 +117,12 @@ def speichere_positionen_temp(daten: list[dict]) -> str:
             for eintrag in daten
         ]
         session.add_all(objekte)
+
+        counter(counter_path,"TEMP",len(objekte))
         return len(objekte)
     
 
-def speichere_positionen_proc(daten: list[dict]) -> str:
+def speichere_positionen_proc(counter_path,daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Proc(
@@ -104,10 +133,12 @@ def speichere_positionen_proc(daten: list[dict]) -> str:
             for eintrag in daten
         ]
         session.add_all(objekte)
+
+        counter(counter_path,"PROC",len(objekte))
         return len(objekte)
 
 
-def speichere_positionen_cpu(daten: list[dict]) -> str:
+def speichere_positionen_cpu(counter_path,daten: list[dict]) -> str:
     with get_session() as session:
         objekte = [
             Cpu(
@@ -118,6 +149,26 @@ def speichere_positionen_cpu(daten: list[dict]) -> str:
             for eintrag in daten
         ]
         session.add_all(objekte)
+
+        counter(counter_path,"CPU",len(objekte))
+        return len(objekte)
+    
+
+def speichere_positionen_host(counter_path,daten: list[dict]) -> str:
+    with get_session() as session:
+        objekte = [
+            Host(
+                hostname=eintrag["hostname"],  
+                system=eintrag["system"], 
+                kernel=eintrag["kernel"], 
+                architecture=eintrag["architecture"]
+            )
+            for eintrag in daten
+        ]
+        session.add_all(objekte)
+        print("host ist drin")
+
+        counter(counter_path,"HOST",len(objekte))
         return len(objekte)
     
 
@@ -127,10 +178,11 @@ def speichere_positionen_cpu(daten: list[dict]) -> str:
 
 
 if __name__ == "__main__":
-    speichere_positionen(opener(DISK_DATA))
-    speichere_positionen_ram(opener(RAM_DATA))
-    speichere_positionen_sys(opener(UPTIME_DATA))
-    speichere_positionen_docker(opener(DOCKER_DATA))
-    speichere_positionen_temp(opener(TEMP_DATA))
-    speichere_positionen_proc(opener(MEM_DATA))
-    speichere_positionen_cpu(opener(CPU_DATA))
+    speichere_positionen(COUNTER_DATA,opener(DISK_DATA))
+    speichere_positionen_ram(COUNTER_DATA,opener(RAM_DATA))
+    speichere_positionen_sys(COUNTER_DATA,opener(UPTIME_DATA))
+    speichere_positionen_docker(COUNTER_DATA,opener(DOCKER_DATA))
+    speichere_positionen_temp(COUNTER_DATA,opener(TEMP_DATA))
+    speichere_positionen_proc(COUNTER_DATA,opener(MEM_DATA))
+    speichere_positionen_cpu(COUNTER_DATA,opener(CPU_DATA))
+    speichere_positionen_host(COUNTER_DATA,opener(HOST_DATA))

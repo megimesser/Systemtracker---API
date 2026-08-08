@@ -1,0 +1,10 @@
+{
+    "DOCKER": 1,
+    "DATA": 12,
+    "RAM": 2,
+    "SYS": 1,
+    "TEMP": 1,
+    "PROC": 0,
+    "CPU": 0,
+    "HOST": 1
+}

@@ -107,12 +107,15 @@ def docker_ps(lines,path):
             continue
         try:
             data = json.loads(line)
+            print(data)
         except json.JSONDecodeError:
             continue
         entries.append({
+                "image": data["Image"],
                 "container": data["Names"],
                 "runtime": data["RunningFor"],
                 "status": data["Status"],
+                "ports": data["Ports"],
             })
 
     #print(entries)

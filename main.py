@@ -1,0 +1,19 @@
+from Datenbank.crud import opener,speichere_positionen,speichere_positionen_ram,speichere_positionen_docker,speichere_positionen_proc,speichere_positionen_sys,speichere_positionen_temp,speichere_positionen_cpu,speichere_positionen_host
+from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA,MEM_DATA,CPU_DATA,HOST_DATA,COUNTER_DATA
+from Systemtracker.systemabfrage import systemabruf,systemabruf_pipe
+from befehle import BEFEHLSKETTE,BEFEHLSKETTE_PIPE
+
+
+print(systemabruf(BEFEHLSKETTE))
+print(systemabruf_pipe(BEFEHLSKETTE_PIPE))
+
+
+
+speichere_positionen(opener(DISK_DATA))
+speichere_positionen_ram(opener(RAM_DATA))
+speichere_positionen_sys(opener(UPTIME_DATA))
+speichere_positionen_docker(COUNTER_DATA,opener(DOCKER_DATA))
+speichere_positionen_temp(opener(TEMP_DATA))
+speichere_positionen_proc(opener(MEM_DATA))
+speichere_positionen_cpu(opener(CPU_DATA))
+speichere_positionen_host(opener(HOST_DATA))

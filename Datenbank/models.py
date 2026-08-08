@@ -1,13 +1,13 @@
 from datetime import datetime, timezone
 from sqlalchemy import String, Float, Integer, DateTime, Text, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship #TIMESTAMP
 from Datenbank.db import Base 
 
 
 class Datentraeger(Base):
     __tablename__ = "discinformation"
 
-    id:Mapped[int] = mapped_column(Integer, primary_key=True)
+    id:Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False)
     filesystem: Mapped[str] = mapped_column(String(300), index = True)
     size: Mapped[str] = mapped_column(String(300), index = True)
     used: Mapped[str] = mapped_column(String(300), index = True)
@@ -33,6 +33,8 @@ class Ram(Base):
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),
     )
+    # oder
+    #erfasst_am = Column(TIMESTAMP(timezone=true), nullable = False, server_deafult=text("now()"))
 
 
 class Sysinfo(Base):
@@ -49,10 +51,12 @@ class Sysinfo(Base):
 
 
 class Docker(Base):
-    __tablename__ = "Dockerinformation"
+    __tablename__ = "dockerinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
     image: Mapped[str] = mapped_column(String(300), index = True)
+    name: Mapped[str] = mapped_column(String(300), index = True)
+    ports: Mapped[str] = mapped_column(String(300), index = True)
     runtime: Mapped[str] = mapped_column(String(300), index = True)
     status: Mapped[str] = mapped_column(String(300), index = True)
 
@@ -63,7 +67,7 @@ class Docker(Base):
 
 
 class Temp(Base):
-    __tablename__ = "Temperaturinformation"
+    __tablename__ = "temperaturinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
     temp: Mapped[str] = mapped_column(String(300), index = True)
@@ -74,7 +78,7 @@ class Temp(Base):
 
 
 class Proc(Base):
-    __tablename__ = "Prozessinformation"
+    __tablename__ = "prozessinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
     user: Mapped[str] = mapped_column(String(300), index = True)
@@ -87,7 +91,7 @@ class Proc(Base):
 
 
 class Cpu(Base):
-    __tablename__ = "Cpuinformation"
+    __tablename__ = "cpuinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
     user: Mapped[str] = mapped_column(String(300), index = True)
@@ -97,6 +101,20 @@ class Cpu(Base):
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),
     )
+
+class Host(Base):
+    __tablename__="hostinformation"
+
+    id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    system: Mapped[str] = mapped_column(String(300), index = True)
+    hostname: Mapped[str] = mapped_column(String(300), index = True)
+    kernel: Mapped[str] = mapped_column(String(300), index = True)
+    architecture: Mapped[str] = mapped_column(String(300), index = True)
+    erfasst_am: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+    )
+
 
 
 

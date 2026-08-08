@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 
 
+
 BASE_DIR = Path(__file__).resolve().parent
 
 DISK = BASE_DIR / "Systemtracker" / "disk.json"
@@ -18,6 +19,7 @@ MEM_DATA = BASE_DIR / "data" / "mem.json"
 CPU_DATA = BASE_DIR / "data" / "cpu.json"
 HOST_DATA = BASE_DIR / "data" / "host.json"
 
+COUNTER_DATA = BASE_DIR / "data" / "counter.json"
 
 
 load_dotenv(BASE_DIR / ".env")
