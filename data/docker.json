@@ -2,8 +2,8 @@
     {
         "image": "postgres:17",
         "container": "database",
-        "runtime": "3 days ago",
-        "status": "Up 3 days",
+        "runtime": "3 months ago",
+        "status": "Up 20 minutes",
         "ports": "0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp"
     }
 ]
