@@ -1,9 +1,16 @@
 [
     {
+        "image": "alpine",
+        "container": "elastic_chandrasekhar",
+        "runtime": "20 seconds ago",
+        "status": "Up 20 seconds",
+        "ports": ""
+    },
+    {
         "image": "postgres:17",
         "container": "database",
         "runtime": "3 months ago",
-        "status": "Up 22 hours",
+        "status": "Up 45 hours",
         "ports": "0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp"
     }
 ]
