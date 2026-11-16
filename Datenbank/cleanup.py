@@ -9,7 +9,7 @@ from config import DATABASE_DB, DATABASE_PW, DATABASE_USER
 
 RETENTION_TAGE = 7
 MAX_VERSUCHE = 5
-TABELLEN = ["temperaturinformation","cpuinformation","dockerinformation","prozessinformation","discinformation","hostinginformation","prozessinformation","raminformation","sysinformation"]
+TABELLEN = ["temperaturinformation","cpuinformation","dockerinformation","prozessinformation","discinformation","hostinformation","prozessinformation","raminformation","sysinformation"]
 
 
 def verbinden():
