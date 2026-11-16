@@ -1,8 +1,8 @@
 import platform
 
-os = platform.system()
-detail = print(platform.version()) 
-print(platform.release())  
+os_info = platform.freedesktop_os_release()
 
-print(os)
-print(detail)
+print(os_info["NAME"])
+print(os_info["VERSION"])
+print(os_info["ID"])
+print(os_info["ID_LIKE"])
