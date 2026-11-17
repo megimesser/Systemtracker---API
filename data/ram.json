@@ -1,7 +1,7 @@
 [
     {
         "marker": "Mem:",
-        "total": "3.7Gi",
+        "total": "1000000000Gi",
         "used": "1.2Gi",
         "free": "80Mi",
         "available": "2.5Gi"
