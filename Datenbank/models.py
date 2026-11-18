@@ -8,6 +8,7 @@ class Datentraeger(Base):
     __tablename__ = "discinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     filesystem: Mapped[str] = mapped_column(String(300), index = True)
     size: Mapped[str] = mapped_column(String(300), index = True)
     used: Mapped[str] = mapped_column(String(300), index = True)
@@ -24,6 +25,7 @@ class Ram(Base):
     __tablename__ = "raminformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     marker: Mapped[str] = mapped_column(String(300), index = True)
     total: Mapped[str] = mapped_column(String(300), index = True)
     used: Mapped[str] = mapped_column(String(300), index = True)
@@ -41,6 +43,7 @@ class Sysinfo(Base):
     __tablename__ = "sysinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     uptime: Mapped[str] = mapped_column(String(300), index = True)
     users: Mapped[str] = mapped_column(String(300), index = True)
     load_averages: Mapped[str] = mapped_column(String(300), index = True)
@@ -54,6 +57,7 @@ class Docker(Base):
     __tablename__ = "dockerinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     image: Mapped[str] = mapped_column(String(300), index = True)
     name: Mapped[str] = mapped_column(String(300), index = True)
     ports: Mapped[str] = mapped_column(String(300), index = True)
@@ -70,6 +74,7 @@ class Temp(Base):
     __tablename__ = "temperaturinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     temp: Mapped[str] = mapped_column(String(300), index = True)
     erfasst_am: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
@@ -81,6 +86,7 @@ class Proc(Base):
     __tablename__ = "prozessinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     user: Mapped[str] = mapped_column(String(300), index = True)
     pid: Mapped[str] = mapped_column(String(300), index = True)
     Mem: Mapped[str] = mapped_column(String(300), index = True)
@@ -94,6 +100,7 @@ class Cpu(Base):
     __tablename__ = "cpuinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     user: Mapped[str] = mapped_column(String(300), index = True)
     pid: Mapped[str] = mapped_column(String(300), index = True)
     CPU: Mapped[str] = mapped_column(String(300), index = True)
@@ -106,6 +113,7 @@ class Host(Base):
     __tablename__="hostinformation"
 
     id:Mapped[int] = mapped_column(Integer, primary_key = True)
+    host: Mapped[str] = mapped_column(String(300), index = True)
     system: Mapped[str] = mapped_column(String(300), index = True)
     hostname: Mapped[str] = mapped_column(String(300), index = True)
     kernel: Mapped[str] = mapped_column(String(300), index = True)

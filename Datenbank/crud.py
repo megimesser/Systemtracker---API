@@ -166,8 +166,7 @@ def speichere_positionen_host(counter_path,daten: list[dict], hostname: str) -> 
     with get_session() as session:
         objekte = [
             Host(
-                hostname = hostname,
-                hostname=eintrag["hostname"],  
+                hostname = hostname, 
                 system=eintrag["system"], 
                 kernel=eintrag["kernel"], 
                 architecture=eintrag["architecture"]
