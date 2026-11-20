@@ -48,6 +48,8 @@ def systemabruf(befehlskette):
                 host(lines,HOST_DATA)
                 print("hierkommt hostename")
 
+            ### neue Funktion für Hostname welche lediglich den hostname an sich speichert 
+
             if befehl == ['free', '-h']:
                 free(lines,RAM_DATA)
                             
@@ -132,13 +134,16 @@ def systemabruf_pipe(befehlskette_pipe):
             
                 if befehl_1 + befehl_2 == ['journalctl', 'tail', '-20']:
                     journal(lines,JOURNAL_DATA)
+                    print("test_1")
 
 
                 if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%mem',  'head', '-10']:
                     process_mem(lines,MEM_DATA)
+                    print("test_2")
                 
                 if befehl_1 + befehl_2 == ['ps', 'aux', '--sort=-%cpu', 'head', '-10']:
                     process_cpu(lines,CPU_DATA)
+                    print("test_3")
 
                     
         
@@ -152,4 +157,4 @@ def systemabruf_pipe(befehlskette_pipe):
 
 if __name__ == "__main__":
     print(systemabruf(befehlskette))
-    #print(systemabruf_pipe(befehlskette_pipe))
+    print(systemabruf_pipe(befehlskette_pipe))

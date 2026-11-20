@@ -1,6 +1,6 @@
 [
     {
-        "hostname": " test_DB",
+        "hostname": " test_2",
         "system": " Debian GNU/Linux 13 (trixie)",
         "kernel": " Linux 6.12.75+rpt-rpi-v8",
         "architecture": " arm64"

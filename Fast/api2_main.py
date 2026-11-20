@@ -24,13 +24,15 @@ app = FastAPI()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
+
+
 def opener(data):
     with open(data,"r") as f:
         number = json.load(f)
     return number 
 
 
-
+#Datenbankverbindung
 while True:
     try: 
         conn = psycopg2.connect(host = "localhost",port= 5433,database = DATABASE_DB, user = DATABASE_USER, password = DATABASE_PW,cursor_factory = RealDictCursor)
@@ -42,9 +44,22 @@ while True:
         print("ERROR :", error)
         time.sleep(2)
 
+#Holt alle Hosts aus der Datenbank
+def alle_hosts(cursor) -> list[str]:
+    cursor.execute("SELECT DISTINCT hostname FROM hostinformation ORDER BY hostname")
+    print([row["hostname"] for row in cursor.fetchall()])
+
+    return [row["hostname"] for row in cursor.fetchall()]
+
+
+
+print(alle_hosts(cursor))
+
 
 @app.get("/dashboard", response_class=HTMLResponse)
 def dashboard(request: Request):
+
+    
 
     number = opener(COUNTER_DATA)
 

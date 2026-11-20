@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="30">
-    <title>Systemanalyzer</title>
+    <title>Systemanalyzer · {{ current }}</title>
 
     <style>
     :root {
@@ -79,7 +79,7 @@
         gap: 1rem;
         border-bottom: 1px solid var(--line-bright);
         padding-bottom: 1.25rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.25rem;
     }
 
     .masthead h1 {
@@ -111,6 +111,44 @@
     }
     .masthead .clock .live {
         color: var(--primary);
+    }
+
+    /* ---- Host-Navigation ---- */
+    .host-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .host-button {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-dim);
+        text-decoration: none;
+        padding: 0.45rem 1rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .host-button:hover {
+        color: var(--primary-hover);
+        border-color: var(--line-bright);
+    }
+
+    .host-button.active {
+        color: var(--bg);
+        background: var(--primary);
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+    }
+
+    .host-button.active::before {
+        content: "▸ ";
     }
 
     /* ---- Section labels ---- */
@@ -301,6 +339,7 @@
     .panel.full { margin-top: 0; }
 
     @media (max-width: 720px) {
+        #main_wrapper { padding: 1.5rem 1rem 3rem; }
         #host-strip { grid-template-columns: 1fr; }
         #host-strip > .cell { border-right: none; border-bottom: 1px solid var(--line); }
         .masthead h1 { font-size: 1.7rem; }
@@ -313,10 +352,21 @@
         <header class="masthead">
             <h1><span class="prompt">~/</span>systemanalyzer<span class="cursor">&nbsp;</span></h1>
             <div class="clock">
-                <div>SESSION <span class="live">● LIVE</span></div>
+                <div>HOST <span class="live">● {{ current }}</span></div>
                 <div id="uhr">--:--:--</div>
             </div>
         </header>
+
+        <!-- ===== HOST-NAVIGATION (automatisch aus der Datenbank) ===== -->
+        <nav class="host-nav" aria-label="Hosts">
+            {% for h in hosts %}
+            <a href="/dashboard/{{ h }}"
+               class="host-button{% if h == current %} active{% endif %}"
+               {% if h == current %}aria-current="page"{% endif %}>{{ h }}</a>
+            {% else %}
+            <span class="empty">Noch keine Hosts mit Daten.</span>
+            {% endfor %}
+        </nav>
 
         <!-- ===== HOST / SYSTEM STRIP ===== -->
         <div id="host-strip" class="panel">
@@ -346,11 +396,6 @@
                 {% endfor %}
             </div>
         </div>
-
-        
-
-
-
 
         <!-- ===== DOCKER (full width) ===== -->
         <div class="panel" style="margin-bottom: 1.5rem;">

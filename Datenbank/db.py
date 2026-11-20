@@ -5,7 +5,9 @@ from config import DATABASE_PW,DATABASE_DB,DATABASE_USER
 
 #Verbindung der Datenbank zum SQL - Container
 DATABASE_URL = (
-    f"postgresql+psycopg://{DATABASE_USER}:{DATABASE_PW}@192.168.178.30:5433/{DATABASE_DB}"
+    # neue URL
+    #f"postgresql+psycopg://{DATABASE_USER}:{DATABASE_PW}@192.168.178.30:5433/{DATABASE_DB}"
+    f"postgresql+psycopg://{DATABASE_USER}:{DATABASE_PW}@localhost:5433/{DATABASE_DB}"
 )
 
 """
@@ -40,16 +42,32 @@ class Base(DeclarativeBase):
     pass
 
 
+from contextlib import contextmanager
+from sqlalchemy.exc import OperationalError
+
+
+
+
 @contextmanager
 def get_session():
-    """Session mit garantiertem Aufräumen – wie 'with open()' für Dateien."""
+    """Session mit garantiertem Aufräumen."""
+
     session = SessionLocal()
+
     try:
         yield session
         session.commit()
-    except Exception:
+
+    except OperationalError as e:
         session.rollback()
+        print(f"Datenbankverbindung fehlgeschlagen: {e}")
         raise
+
+    except Exception as e:
+        session.rollback()
+        print(f"Unerwarteter Fehler: {e}")
+        raise
+
     finally:
         session.close()
 
