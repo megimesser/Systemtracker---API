@@ -6,8 +6,8 @@ from config import DATABASE_PW,DATABASE_DB,DATABASE_USER
 #Verbindung der Datenbank zum SQL - Container
 DATABASE_URL = (
     # neue URL
-    #f"postgresql+psycopg://{DATABASE_USER}:{DATABASE_PW}@192.168.178.30:5433/{DATABASE_DB}"
-    f"postgresql+psycopg://{DATABASE_USER}:{DATABASE_PW}@localhost:5433/{DATABASE_DB}"
+    f"postgresql+psycopg://{DATABASE_USER}:{DATABASE_PW}@192.168.178.30:5433/{DATABASE_DB}"
+    #f"postgresql+psycopg://{DATABASE_USER}:{DATABASE_PW}@localhost:5433/{DATABASE_DB}"
 )
 
 """
