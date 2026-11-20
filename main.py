@@ -2,6 +2,7 @@ from Datenbank.crud import opener,speichere_positionen,speichere_positionen_ram,
 from config import DISK_DATA,RAM_DATA,UPTIME_DATA,DOCKER_DATA,TEMP_DATA,JOURNAL_DATA,MEM_DATA,CPU_DATA,HOST_DATA,COUNTER_DATA,HOST_DATA
 from Systemtracker.systemabfrage import systemabruf,systemabruf_pipe
 from befehle import BEFEHLSKETTE,BEFEHLSKETTE_PIPE
+from Datenbank.helper import lade_hostname
 
 
 print(systemabruf(BEFEHLSKETTE))
