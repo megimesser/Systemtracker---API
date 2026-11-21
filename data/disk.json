@@ -2,15 +2,15 @@
     {
         "filesystem": "/dev/disk3s3s1",
         "size": "926Gi",
-        "used": "12Gi",
-        "available": "415Gi",
-        "capacity": "3%",
+        "used": "16Gi",
+        "available": "398Gi",
+        "capacity": "4%",
         "mounted_on": "/"
     },
     {
         "filesystem": "devfs",
-        "size": "221Ki",
-        "used": "221Ki",
+        "size": "223Ki",
+        "used": "223Ki",
         "available": "0Bi",
         "capacity": "100%",
         "mounted_on": "/dev"
@@ -18,24 +18,24 @@
     {
         "filesystem": "/dev/disk3s6",
         "size": "926Gi",
-        "used": "7.0Gi",
-        "available": "415Gi",
-        "capacity": "2%",
+        "used": "10Gi",
+        "available": "398Gi",
+        "capacity": "3%",
         "mounted_on": "/System/Volumes/VM"
     },
     {
         "filesystem": "/dev/disk3s4",
         "size": "926Gi",
-        "used": "10Gi",
-        "available": "415Gi",
-        "capacity": "3%",
+        "used": "16Gi",
+        "available": "398Gi",
+        "capacity": "4%",
         "mounted_on": "/System/Volumes/Preboot"
     },
     {
         "filesystem": "/dev/disk3s2",
         "size": "926Gi",
-        "used": "42Mi",
-        "available": "415Gi",
+        "used": "1.0Gi",
+        "available": "398Gi",
         "capacity": "1%",
         "mounted_on": "/System/Volumes/Update"
     },
@@ -66,9 +66,9 @@
     {
         "filesystem": "/dev/disk3s1",
         "size": "926Gi",
-        "used": "480Gi",
-        "available": "415Gi",
-        "capacity": "54%",
+        "used": "483Gi",
+        "available": "398Gi",
+        "capacity": "55%",
         "mounted_on": "/System/Volumes/Data"
     },
     {
@@ -110,5 +110,21 @@
         "available": "926Gi",
         "capacity": "477Gi",
         "mounted_on": "/private/var/folders/_f/tf9xyfhs0tzcx0zq5ht6h0400000gn/T/AppTranslocation/E15AC0CA-9C61-4A5A-8144-439B339BF4AF"
+    },
+    {
+        "filesystem": "/dev/disk2s1",
+        "size": "5.0Gi",
+        "used": "2.4Gi",
+        "available": "2.6Gi",
+        "capacity": "48%",
+        "mounted_on": "/System/Volumes/Update/SFR/mnt1"
+    },
+    {
+        "filesystem": "/dev/disk3s3",
+        "size": "926Gi",
+        "used": "16Gi",
+        "available": "398Gi",
+        "capacity": "4%",
+        "mounted_on": "/System/Volumes/Update/mnt1"
     }
 ]
